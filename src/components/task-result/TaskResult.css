@@ -1,0 +1,94 @@
+.assignment {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 12px;
+    color: var(--dark-text-color);
+    background-color: transparent;
+  }
+  
+  .assignment__header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .assignment__title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark-text-color);
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .assignment__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .assignment__due-date {
+    opacity: 0.85;
+  }
+  
+  .assignment__grade {
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+  
+  .assignment__section {
+    margin-bottom: 32px;
+  }
+  
+  .assignment__section-title {
+    font-size: 18px;
+    color: var(--dark-text-color);
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  
+  .assignment__content {
+    line-height: 1.6;
+    margin: 0;
+    color: #444;
+    font-size: 15px;
+  }
+  
+  .assignment__code-editor {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 12px;
+  }
+  
+  /* Отступы для кода */
+  .assignment__code-editor .cm-editor {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 14px;
+  }
+  
+  /* Выделение синтаксиса темы Dracula */
+  .assignment__code-editor .cm-line {
+    padding-left: 8px;
+  }
+  
+  @media (min-width: 768px) {
+    .assignment {
+      padding: 40px 32px;
+    }
+    
+    .assignment__header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .assignment__meta {
+      justify-content: flex-end;
+    }
+  }

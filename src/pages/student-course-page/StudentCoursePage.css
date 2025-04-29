@@ -1,0 +1,192 @@
+/* Основные стили страницы */
+.student-course {
+    margin: 20px auto 30px;
+    /* margin-top: 60px; */
+    max-width: 100%;
+    padding: 20px 30px;
+    background-color: var(--background-color);
+  }
+  
+  /* Шапка курса */
+  .student-course__header {
+    display: flex;
+    align-items: flex-start;
+    /* margin-bottom: 30px; */
+    margin-left: 20px;
+    gap: 25px;
+    border-radius: 16px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+  }
+  
+  .student-course__header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    /* background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-color-lighter) 100%); */
+    border-radius: 2px;
+  }
+  
+  .student-course__cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    flex-shrink: 0;
+  }
+  
+  /* Информация о курсе */
+  .student-course__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .student-course__title {
+    margin: 0 0 15px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-family: var(--font-family);
+    line-height: 1.2;
+  }
+  
+  .student-course__description {
+    color: var(--dark-text-color);
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+  
+  /* Информация о преподавателе */
+  .student-course__teacher {
+    margin-top: 10px;
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  
+  /* Заголовок и прогресс модулей */
+  .student-course__modules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .student-course__modules-title {
+    font-size: 40;
+    font-weight: 600;
+    margin: 5px 0 0 0;
+    margin-left: 40px !important;
+    color: var(--dark-text-color);
+    padding-left: 12px;
+    border-left: 3px solid var(--accent-color);
+    font-family: var(--font-family);
+  }
+  
+  /* Прогресс курса */
+  .student-course__progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 40px !important;
+  }
+  
+  .student-course__progress progress {
+    height: 8px;
+    border-radius: 4px;
+    width: 120px;
+    border: none;
+    background-color: transparent;
+    overflow: hidden;
+  }
+  
+  .student-course__progress progress::-webkit-progress-bar {
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+  }
+  
+  .student-course__progress progress::-webkit-progress-value {
+    background: #4CAF50; /* Зеленый цвет для прогресса */
+    border-radius: 4px;
+  }
+  
+  .student-course__progress span {
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+  }
+  
+  /* Список модулей */
+  .student-course__modules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  /* Кнопка продолжения */
+  .student-course__continue-btn {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .student-course__continue-btn button {
+    padding: 12px 25px;
+    font-size: 14px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-light) 100%);
+    color: var(--light-text-color);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px var(--shadow-color);
+  }
+  
+  .student-course__continue-btn button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--accent-color-light) 0%, var(--accent-color) 100%);
+    box-shadow: 0 5px 15px rgba(70, 44, 28, 0.2);
+  }
+  
+  /* Адаптивность для мобильных устройств */
+  @media (max-width: 768px) {
+    .student-course {
+      padding: 15px 10px;
+    }
+    
+    .student-course__header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 15px;
+    }
+    
+    .student-course__cover {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .student-course__modules-list {
+      gap: 12px;
+    }
+    
+    .student-course__title {
+      font-size: 1.4rem;
+    }
+  }

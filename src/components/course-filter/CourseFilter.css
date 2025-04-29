@@ -1,0 +1,224 @@
+.course-filter{
+    margin-top: -10px;
+    width: 250px;
+    margin-left: 30px;
+}
+
+    /* Фильтр цены */
+
+    /* Название для всех фильтров */
+    .course-filter__name{
+        font-family: var(--font-family);
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .course-filter__price__price{
+        margin-left: 10px;
+        margin-top: 10px;
+        display: flex;
+        width: 210px;
+        justify-content: space-between;
+    }
+
+        .course-filter__price__price input{
+            width: 100px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 4px 16px var(--shadow-color);
+
+        }
+
+        .course-filter__price__price input::placeholder{
+            color: var(--placeholder-color);
+            font-size: 12px;
+        }
+
+
+    /* Фильтр по темам */
+    .course-filter__topics{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+        height: 150px;
+        justify-content: space-between;
+    }
+        .course-filter__topics__label{
+            margin-left: 10px;
+            font-size: 16px;
+            display: flex;
+        }
+
+        .course-filter__topics__checkbox-text{
+            font-family: var(--font-family);
+            font-size: 17px;
+            margin-top: -6px;
+            margin-left: 3px;
+        }
+
+        .course-filter__topics input[type="checkbox"] {
+            appearance: none; 
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.2s;
+        } 
+        
+        .course-filter__topics input[type="checkbox"]:checked {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .course-filter__topics input[type="checkbox"]::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.285 6.328a1 1 0 0 0-1.41 0l-9.192 9.193-4.191-4.192a1 1 0 0 0-1.414 1.415l4.899 4.898a1 1 0 0 0 1.414 0l9.894-9.894a1 1 0 0 0 0-1.415z'/%3E%3C/svg%3E");
+            background-size: contain; 
+            background-repeat: no-repeat;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    /* Контейнер для выпадающего списка */
+    .dropdown {
+        position: relative;
+        width: 210px;
+        /* margin-left: 10px; */
+    }
+        /* Шапка выпадающего списка */
+        .dropdown__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 210px;
+            height: 30px;
+            padding: 8px;
+            box-shadow: 0 4px 16px var(--shadow-color);
+            border-radius: 4px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+            color: var(--placeholder-color);
+            font-size: 12px;
+            white-space: nowrap;  /* Убираем перенос текста */
+            overflow: hidden;     /* Обрезаем текст если не помещается */
+            text-overflow: ellipsis;  /* Добавляем многоточие если текст выходит */
+            min-width: 100px;     /* Минимальная ширина для блока */
+            margin-left: 5px;
+        }
+        /* Стрелка на правой стороне */
+        .dropdown__header span{
+            color: var(--accent-color);
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        /* Контент выпадающего списка */
+        .dropdown__content {
+            position: absolute;
+            width: 100%;
+            background: var(--card-color);
+            /* border: 1px solid #ccc; */
+            box-shadow: 0 4px 16px var(--shadow-color);
+            border-radius: 4px;
+            margin-top: 5px;
+            padding: 5px;
+            z-index: 10;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-left: 5px;
+        }
+
+            /* Ввод для поиска */
+            .dropdown__content__search {
+                width: 100%;
+                height: 30px;
+                margin: 5px 0;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .dropdown__content__search::placeholder{
+                color: var(--placeholder-color);
+                font-size: 12px;
+            }
+
+            /* Список элементов в выпадающем списке */
+            .dropdown__content__list{
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+                /* Элементы списка */
+                .dropdown__content__list li{
+                    padding: 5px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                }
+
+                    /* Шрифт и отступы для каждого элемента */
+                    .dropdown__content__list li input {
+                        margin-right: 10px;
+                    }
+
+                    /* Элементы в выпадающем списке */
+                    .dropdown__content__list__item input {
+                        margin-right: 10px;
+                    }
+
+
+
+
+
+        /* Контейнер для выбранных языков (сверху) */
+        .dropdown__selected-languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+            /* margin-left: 10px; */
+            max-width: 210px;  /* Ограничиваем максимальную ширину */
+        }
+
+            /* Индивидуальные языки, которые выбраны */
+            .dropdown__selected-languages__item {
+                background: var(--accent-color);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                white-space: nowrap;  /* Убираем перенос строки */
+                position: relative;
+                height: 25px;
+                margin-left: 5px;
+            }
+
+            .dropdown__selected-languages__item .remove-btn {
+                position: absolute;
+                right: -2px;
+                top: -3px;
+                cursor: pointer;
+                font-size: 8px;
+                color: var(--dark-text-color);
+                box-shadow: 0 4px 16px var(--shadow-color);
+                background-color: white;  /* Красный фон для крестика */
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;  /* Делаем круг */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+

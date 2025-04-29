@@ -1,0 +1,89 @@
+.login-container{
+    width: 380px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: auto auto;
+    margin-top: 200px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+    .login-container__name{
+        font-family: var(--font-family);
+        font-size: 30px;
+        
+    }
+
+    .login-container__input{
+        display: flex;
+        flex-direction: column;
+        width: 380px;
+        height: 140px;
+        justify-content: space-between;
+
+    }
+
+        .login-container__input__name{
+            font-family: var(--font-family);
+            color: var(--dark-text-color);
+        }
+
+        .login-container__input__email,
+        .login-container__input__password{
+            width: 376px;
+            height: 57px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+
+            .login-container__input__password input:focus,
+            .login-container__input__email input:focus{
+                outline: none;
+                border: 2px solid var(--accent-color-transparent);
+                /* border-radius: 5px; */
+            }
+
+            .login-container__input__password input,
+            .login-container__input__email input{
+                font-family: var(--font-family);
+            }
+
+
+    .login-container__button{
+        width: 100%;
+        height: 34px;
+        border-radius: 5px;
+        background-color: var(--accent-color);
+        color: var(--light-text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+        .login-container__button:hover{
+            background-color: var(--accent-color-hover);
+            cursor: pointer;
+            /* border: 1px solid #2e515b; */
+        }
+
+    .login-container__no-signup{
+        font-family: var(--font-family)
+    }
+
+    .login-container__no-signup a{
+        text-decoration: none;
+        font-weight:600;
+        color: var(--menu-accent);
+    }
+
+    .login-container__no-signup a:hover{
+        font-weight:600;
+        color:  var(--accent-color-hover);
+        cursor: pointer;
+    }

@@ -1,0 +1,158 @@
+:root {
+    
+    --background-light: #ebeef9;
+    --border-light: #E9ECF0;
+  }
+  
+  /* body {
+    font-family: var(--font-family);
+    background-color: #FAFAFA;
+    margin: 0;
+    padding: 0;
+    color: var(--dark-text-color);
+    line-height: 1.5;
+  } */
+  
+  /* Контейнер формы оплаты */
+  .payment-container {
+    max-width: 650px;
+    margin: 150px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  
+  /* Общие стили для карточек */
+  .profile-info, .course-info {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    overflow: hidden;
+  }
+  
+  /* Блок с данными профиля */
+  .profile-info {
+    background-color: var(--accent-color-transparent);
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: 0 0 16px 0;
+  }
+  
+  .profile-info__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .profile-info__name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-color);
+  }
+  
+  .profile-info__email {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-color);
+  }
+  
+  /* Блок информации о курсе */
+  .course-info__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-text-color);
+    margin: 0 0 8px 0;
+  }
+  
+  .course-info__description {
+    font-size: 16px;
+    color: var(--dark-text-color);
+    margin: 0 0 24px 0;
+  }
+  
+  .course-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid var(--border-light);
+    padding-top: 16px;
+  }
+  
+  .course-details__duration {
+    color: var(--dark-text-color);
+  }
+  
+  .course-details__duration p {
+    margin: 4px 0;
+  }
+  
+  .course-details__price {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent-color);
+  }
+  
+  /* Кнопка оплаты */
+  .payment-button {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(90, 70, 232, 0.25);
+    text-align: center;
+  }
+  
+  .payment-button:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+  }
+  
+  .payment-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(90, 70, 232, 0.25);
+  }
+  
+  /* Адаптивность для мобильных устройств */
+  @media (max-width: 700px) {
+    .payment-container {
+      margin: 20px 16px;
+    }
+    
+    .profile-info__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .course-details {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    
+    .course-details__price {
+      font-size: 28px;
+    }
+    
+    .payment-header__title {
+      font-size: 30px;
+    }
+    
+    .payment-header__subtitle {
+      font-size: 18px;
+    }
+  }

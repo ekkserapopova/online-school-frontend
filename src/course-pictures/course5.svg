@@ -1,0 +1,51 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="400" height="300" fill="#F9FAFB" rx="10" ry="10" />
+  
+  <!-- Браузер - окно -->
+  <rect x="60" y="50" width="280" height="200" rx="8" ry="8" fill="#fff" stroke="#e0d6d0" stroke-width="2" />
+  
+  <!-- Браузер - верхняя панель -->
+  <rect x="60" y="50" width="280" height="30" rx="8" ry="8" fill="#392C35" />
+  <rect x="60" y="70" width="280" height="10" fill="#392C35" />
+  
+  <!-- Кнопки браузера -->
+  <circle cx="80" cy="65" r="5" fill="#622E3A" />
+  <circle cx="95" cy="65" r="5" fill="#7a5a49" />
+  <circle cx="110" cy="65" r="5" fill="#513f4b" />
+  
+  <!-- Адресная строка -->
+  <rect x="130" y="58" width="190" height="14" rx="7" ry="7" fill="#e4e7eb" />
+  <text x="135" y="69" font-family="Arial" font-size="10" fill="#392C35">https://mycodingcourse.com</text>
+  
+  <!-- HTML-тег как иконка сайта -->
+  <text x="320" y="69" font-family="monospace" font-size="12" font-weight="bold" fill="#622E3A">&lt;/&gt;</text>
+  
+  <!-- Макет сайта - секции -->
+  <rect x="80" y="90" width="240" height="40" rx="4" ry="4" fill="#392c352f" />
+  <rect x="80" y="140" width="110" height="90" rx="4" ry="4" fill="#392c352f" />
+  <rect x="210" y="140" width="110" height="40" rx="4" ry="4" fill="#392c352f" />
+  <rect x="210" y="190" width="110" height="40" rx="4" ry="4" fill="#392c352f" />
+  
+  <!-- Элементы дизайна сайта -->
+  <text x="100" y="115" font-family="Arial" font-size="16" font-weight="bold" fill="#392C35">Онлайн-курс</text>
+  <circle cx="100" cy="165" r="10" fill="#622E3A" />
+  <rect x="120" y="160" width="60" height="8" rx="4" ry="4" fill="#392C35" />
+  <rect x="120" y="175" width="40" height="8" rx="4" ry="4" fill="#392C35" />
+  
+  <circle cx="100" cy="195" r="10" fill="#622E3A" />
+  <rect x="120" y="190" width="60" height="8" rx="4" ry="4" fill="#392C35" />
+  <rect x="120" y="205" width="40" height="8" rx="4" ry="4" fill="#392C35" />
+  
+  <rect x="220" y="150" width="60" height="8" rx="4" ry="4" fill="#392C35" />
+  <rect x="220" y="165" width="90" height="8" rx="4" ry="4" fill="#392C35" />
+  
+  <rect x="220" y="200" width="60" height="8" rx="4" ry="4" fill="#392C35" />
+  <rect x="220" y="215" width="90" height="8" rx="4" ry="4" fill="#392C35" />
+  
+  <!-- Декоративные элементы -->
+  <circle cx="30" cy="30" r="15" fill="#392c352f" />
+  <circle cx="370" cy="30" r="15" fill="#392c352f" />
+  <circle cx="30" cy="270" r="15" fill="#392c352f" />
+  <circle cx="370" cy="270" r="15" fill="#392c352f" />
+</svg>

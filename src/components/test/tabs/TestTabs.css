@@ -1,0 +1,38 @@
+/* src/styles/QuizTabs.css */
+.quiz-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+  }
+  
+  .quiz-tab {
+    align-items: center;
+    background-color: var(--background-color);
+    border-radius: 50%;
+    color: var(--dark-text-color);
+    cursor: default;
+    display: flex;
+    font-weight: 500;
+    height: 36px;
+    justify-content: center;
+    margin: 0 8px;
+    width: 36px;
+    transition: all 0.2s ease;
+  }
+  
+  .quiz-tab.active {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    transform: scale(1.1);
+  }
+  
+  .quiz-tab.answered {
+    background-color: var(--accent-color-lighter);
+    color: var(--light-text-color);
+  }
+  
+  .quiz-tab.active.answered {
+    background-color: var(--accent-color);
+  }

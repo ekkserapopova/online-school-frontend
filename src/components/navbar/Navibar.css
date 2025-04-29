@@ -1,0 +1,175 @@
+.navibar {
+    top: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: var(--background-color); 
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+
+
+  /* Логотип и название */
+  .navibar__logo-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+    .navibar__logo-menu__logo {
+      display: flex;
+      padding: 0.5rem 0;
+      width: 160px;
+      justify-content: space-between;
+    }
+
+    .navibar__logo-menu__name{
+      color: var(--dark-text-color);
+      font-family: var(--font-family);
+      font-size: 32px;
+      font-weight: 600;
+      align-content: center;
+      cursor: pointer;
+    }
+    
+    .navibar__logo {
+      cursor: pointer;
+    }
+  
+  /* Меню */
+  .navibar__menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+    .navibar__menu div {
+      padding: 0.5rem 0;
+      position: relative;
+      margin-top: 5px;
+
+    }
+    
+    .navibar__menu div::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color); 
+      transition: width 0.3s ease;
+    }
+    
+    .navibar__menu div:hover::after {
+      width: 100%;
+    }
+    
+    .navibar__menu a {
+      color: var(--dark-text-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 20px;
+      transition: color 0.3s ease;
+      font-family: var(--font-family);
+    }
+  
+  /* Кнопка входа */
+  .navibar__login {
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--background-color); 
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+    .navibar__login a{
+      
+      text-decoration: none;
+      font-weight: 500;
+      color: var( --dark-text-color);
+    }
+
+    .navibar__login a:hover {
+      color: var(--accent-color-hover); /* Немного светлее при наведении */
+    }
+
+  /* Имя пользователя */
+  .navibar__profile {
+    position: relative;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+    .navibar__profile div{
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--dark-text-color);
+      font-family: var(--font-family);
+    }
+    
+    .navibar__profile div:hover {
+      color: var(--accent-color-hover) !important; 
+      
+    }
+  
+    
+  /* Выпадающее меню пользователя */
+  .navbar__dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 180px;
+    background-color: var(--background-color);
+    border-radius: 4px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    z-index: 100;
+    animation: fadeIn 0.2s ease;
+  }
+  
+    /* Анимация */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .navbar__dropdown p{
+      padding: 0.5rem 1rem;
+      margin: 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  
+    .navbar__dropdown a{
+      text-decoration: none;
+      color: var(--dark-text-color);
+      transition: background-color 0.3s ease;
+      
+    }
+    
+    .navbar__dropdown p:hover {
+      background-color: #fff; 
+      color: var(--accent-color-hover); 
+    }
+  
+  

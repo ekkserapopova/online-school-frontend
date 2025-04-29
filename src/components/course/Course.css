@@ -1,0 +1,60 @@
+/* Карточка курса */
+.course-card {
+    display: flex;
+    flex-direction: row;
+    width: 1100px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-color);
+    margin-top: 10px;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  .course-card__img {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  /* Описание курса */
+  .course-card__description {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-grow: 1;
+  }
+
+    .course-card__description div{
+      font-family: var(--font-family);
+      color: var(--dark-text-color);
+    }
+    
+    .course-card__description__name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .course-card__description__overview {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    
+    .course-card__description__price {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-color) !important;
+      margin-top: auto;
+      align-self: flex-end;
+    }
+  

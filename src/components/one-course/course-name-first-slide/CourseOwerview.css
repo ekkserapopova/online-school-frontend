@@ -1,0 +1,103 @@
+.course-overview {
+    background-color: #392C35;
+    color: var(--background-color);
+    min-height: 100vh; /* Занимает всю высоту экрана */
+    width: 100%;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  .course-overview__title {
+    font-size: 4rem;
+    font-family: var(--font-family);
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--background-color);
+    max-width: 100%;
+  }
+  
+  .course-overview__description {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-family: var(--font-family);
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 700px;
+  }
+  
+  .course-overview__enroll-button{
+    background-color: #FF7A5A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    align-self: flex-start;
+    margin-bottom: 50px;
+    font-family: var(--font-family);
+  }
+  
+  .course-overview__enroll-button {
+    background-color: #ff9177;
+    transform: translateY(-3px);
+  }
+  
+  .course-overview__additional-info {
+    margin-top: 120px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .course-overview__additional-info p {
+    margin: 0 40px 0 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family);
+  }
+  
+  .course-overview__additional-info p::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #FF7A5A;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  @media (max-width: 768px) {
+    .course-title {
+      font-size: 2.5rem;
+    }
+    
+    .course-description {
+      font-size: 1.2rem;
+    }
+    
+    .additional-info {
+      flex-direction: column;
+    }
+    
+    .additional-info p {
+      margin: 10px 0;
+    }
+    
+    .enroll-button {
+      padding: 14px 28px;
+      font-size: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+  }

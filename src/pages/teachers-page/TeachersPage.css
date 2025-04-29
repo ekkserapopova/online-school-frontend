@@ -1,0 +1,8 @@
+.teachers{
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 64px; */
+    justify-content: space-between;
+    margin: 30px auto;
+}

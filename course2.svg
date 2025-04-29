@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="400" height="300" fill="#F9FAFB" rx="10" ry="10" />
+  
+  <!-- Геометрические фигуры -->
+  <circle cx="120" cy="150" r="60" fill="#392C35" />
+  <rect x="170" y="90" width="120" height="120" fill="#622E3A" />
+  <polygon points="310,150 350,90 350,210" fill="#513f4b" />
+  
+  <!-- Линии соединения -->
+  <line x1="120" y1="150" x2="230" y2="150" stroke="#392C35" stroke-width="3" stroke-dasharray="5,3" />
+  <line x1="290" y1="150" x2="230" y2="150" stroke="#513f4b" stroke-width="3" stroke-dasharray="5,3" />
+  
+  <!-- Декоративные элементы -->
+  <circle cx="120" cy="150" r="10" fill="#fcfbf5" />
+  <rect x="220" y="140" width="20" height="20" fill="#fcfbf5" />
+  <circle cx="310" cy="150" r="10" fill="#fcfbf5" />
+  
+  <!-- Маленькие геометрические элементы для украшения -->
+  <circle cx="40" cy="40" r="15" fill="#392c352f" />
+  <rect x="350" y="40" width="15" height="15" fill="#392c352f" />
+  <polygon points="40,260 55,260 47.5,245" fill="#392c352f" />
+  <circle cx="350" cy="260" r="15" fill="#392c352f" />
+</svg>

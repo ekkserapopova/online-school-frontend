@@ -1,0 +1,68 @@
+.archive-lesson-row {
+    border-bottom: 1px solid #e5e5e5;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  
+  .archive-lesson-row:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .archive-lesson-row:last-child {
+    border-bottom: none;
+  }
+  
+  .archive-lesson-row td {
+    padding: 16px;
+    vertical-align: middle;
+  }
+  
+  .archive-lesson-row__name {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .archive-lesson-row__course {
+    color: #6c757d;
+  }
+  
+  .archive-lesson-row__date {
+    color: #6c757d;
+    white-space: nowrap;
+  }
+  
+  .archive-lesson-row__actions {
+    text-align: right;
+    white-space: nowrap;
+  }
+  
+  .archive-lesson-row__link {
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    margin-left: 12px;
+  }
+  
+  .archive-lesson-row__link:first-child {
+    margin-left: 0;
+  }
+  
+  .archive-lesson-row__link--recording {
+    color: #007bff;
+  }
+  
+  .archive-lesson-row__link--recording:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+  
+  .archive-lesson-row__link--materials {
+    color: #28a745;
+  }
+  
+  .archive-lesson-row__link--materials:hover {
+    background-color: rgba(40, 167, 69, 0.1);
+  }

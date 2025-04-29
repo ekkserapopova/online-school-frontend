@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="400" height="300" fill="#F9FAFB" rx="10" ry="10" />
+  
+  <!-- Декоративные элементы фона -->
+  <circle cx="30" cy="30" r="80" fill="#392c352f" />
+  <circle cx="370" cy="270" r="60" fill="#392c352f" />
+  
+  <!-- Экран с кодом -->
+  <rect x="80" y="60" width="240" height="180" rx="8" ry="8" fill="#392C35" />
+  
+  <!-- Код на экране -->
+  <text x="100" y="100" fill="#F9FAFB" font-family="monospace" font-size="14">
+    <tspan x="100" y="90">function learnCoding() {</tspan>
+    <tspan x="100" y="110">  const skills = [];</tspan>
+    <tspan x="100" y="130">  const effort = 100;</tspan>
+    <tspan x="100" y="150">  if (effort > 0) {</tspan>
+    <tspan x="100" y="170">    skills.push('React');</tspan>
+    <tspan x="100" y="190">    return success;</tspan>
+    <tspan x="100" y="210">  }</tspan>
+    <tspan x="100" y="230">}</tspan>
+  </text>
+  
+  <!-- Символы кода, летающие вокруг -->
+  <text x="50" y="40" fill="#622E3A" font-family="monospace" font-size="18" font-weight="bold">{}</text>
+  <text x="340" y="70" fill="#392C35" font-family="monospace" font-size="22" font-weight="bold">;</text>
+  <text x="60" y="260" fill="#513f4b" font-family="monospace" font-size="24" font-weight="bold">()</text>
+  <text x="330" y="220" fill="#622E3A" font-family="monospace" font-size="20" font-weight="bold">&&</text>
+  <text x="350" y="120" fill="#7a5a49" font-family="monospace" font-size="26" font-weight="bold">=></text>
+</svg>

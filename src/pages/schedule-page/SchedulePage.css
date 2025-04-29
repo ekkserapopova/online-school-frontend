@@ -1,0 +1,165 @@
+
+.schedule-page{
+  padding: 20px 50px;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+
+}
+.schedule__handler {
+  display: flex;
+  width: 260px;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+}
+
+/* Базовые стили для всех кнопок */
+.schedule__btn--schedule,
+.schedule__btn--courses,
+.schedule__btn--archive {
+  display: flex;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Индивидуальные размеры кнопок */
+.schedule__btn--schedule {
+  width: 110px;
+}
+
+.schedule__btn--courses {
+  width: 100px;
+}
+
+.schedule__btn--archive {
+  width: 80px;
+}
+
+/* Стили при наведении - только для неактивных кнопок */
+.schedule__btn--schedule:not(.schedule__btn--schedule--active):hover,
+.schedule__btn--courses:not(.schedule__btn--courses--active):hover,
+.schedule__btn--archive:not(.schedule__btn--archive--active):hover {
+  background-color: var(--background-color);
+}
+
+/* Активные состояния кнопок */
+.schedule__btn--schedule--active,
+.schedule__btn--courses--active,
+.schedule__btn--archive--active {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  /* transform: translateY(-1px); */
+}
+
+.schedule__lessons{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1250px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.schedule__schedule-name{
+  font-size: 28px;
+  margin-left: 60px;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.loading{
+  font-family: var(--font-family);
+  margin-left: -10px;
+  font-size: 18px;
+}
+
+
+/* Контейнер для архива */
+.schedule__archive {
+  margin-top: 30px;
+  width: 1250px;
+  background-color:white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Таблица архива */
+.schedule__archive-lessons {
+  
+  border-collapse: collapse;
+  font-family: var(--font-family);
+  color: var(--dark-text-color);
+}
+
+/* Заголовок таблицы */
+.schedule__archive-lessons thead {
+  text-align: left;
+}
+
+.schedule__archive-lessons th {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-text-color);
+  text-transform: uppercase;
+}
+
+.schedule__archive-lessons th:nth-child(1) {
+  width: 40%; /* Урок */
+}
+
+.schedule__archive-lessons th:nth-child(2) {
+  width: 30%; /* Курс */
+}
+
+.schedule__archive-lessons th:nth-child(3) {
+  width: 20%; /* Дата */
+}
+
+.schedule__archive-lessons th:nth-child(4) {
+  width: 10%; /* Действия */
+}
+
+/* Строки таблицы */
+.schedule__archive-lessons tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.schedule__archive-lessons tbody tr:last-child {
+  border-bottom: none;
+}
+
+.schedule__archive-lessons td {
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Стили для действий */
+/* .schedule__archive-lessons .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.schedule__archive-lessons .actions a {
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent-color);
+  transition: color 0.2s ease;
+}
+
+.schedule__archive-lessons .actions a:hover {
+  color: var(--accent-color-hover);
+} */

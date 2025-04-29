@@ -1,0 +1,185 @@
+.my-courses {
+    width: 1250px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 20px;
+    font-family: var(--font-family);
+  }
+  
+  .my-courses__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .my-courses__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    margin: 0;
+  }
+  
+  .my-courses__tabs {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .my-courses__tab {
+    padding: 8px 16px;
+    border: none;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .my-courses__tab--active {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .my-courses__loading, .my-courses__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: var(--placeholder-color);
+    font-size: 16px;
+  }
+  
+  .my-courses__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+    gap: 24px;
+  }
+  
+  /* Стили для карточки курса */
+  .my-courses__course-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+  }
+  
+  .my-courses__course-card:hover {
+    /* transform: translateY(-5px); */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .my-courses__course-card__image-container {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+  }
+  
+  .my-courses__course-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .my-courses__course-card__badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .my-courses__course-card__content {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .my-courses__course-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: var(--dark-text-color);
+  }
+  
+  .my-courses__course-card__progress {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+  
+  .progress-bar__fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+  .progress-bar__percentage {
+    font-size: 14px;
+    color: var(--dark-text-color);
+    font-weight: 500;
+  }
+  
+  .my-courses__course-card__actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .my-courses__course-card__button {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .my-courses__course-card__button--details {
+    background-color: #f0f0f0;
+    color: var(--dark-text-color);
+  }
+  
+  .my-courses__course-card__button--continue {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .my-courses__course-card__button--certificate {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .my-courses__course-card__button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  
+  /* Специальные стили для завершенных курсов */
+  .my-courses__course-card--completed {
+    border: 1px solid #e0e0e0;
+  }

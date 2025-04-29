@@ -1,0 +1,66 @@
+/* src/styles/QuizQuestion.css */
+.quiz-question {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .question-text {
+    color: var(--dark-text-color);
+    font-size: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .question-option {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 14px 16px;
+    transition: all 0.2s ease;
+  }
+  
+  .question-option:hover {
+    background-color: var(--accent-color-transparent);
+    border-color: var(--accent-color-light);
+  }
+  
+  .question-option.selected {
+    background-color: var(--accent-color-transparent);
+    border-color: var(--accent-color);
+    color: var(--dark-text-color);
+    font-weight: 500;
+  }
+  
+  .record-button {
+    align-self: center;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 6px;
+    color: var(--light-text-color);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 12px;
+    padding: 12px 24px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .record-button:hover {
+    background-color: var(--accent-color-hover);
+  }
+  
+  .record-button:disabled {
+    background-color: var(--placeholder-color);
+    cursor: not-allowed;
+  }

@@ -1,0 +1,80 @@
+.schedule__lesson-card{
+  cursor:auto;
+    background-color: var(--card-color);
+    height: 240px;
+    width: 600px;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    padding: 15px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-left: 4px solid var(--accent-color);
+  }
+  
+  .schedule__lesson-card__handler{
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .schedule__lesson-card__lesson-info{
+    font-size: 18px;
+  }
+  
+  .schedule__lesson-card__lesson-name{
+    font-weight: 640;
+    font-size: 24px;
+  }
+  
+  .schedule__lesson-card__course-name{
+    color: var(--accent-color);
+    font-size: 17px;
+  }
+  
+  .schedule__bottom-btns{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+  }
+  
+  .schedule__bottom-btns__connect-btn{
+    width: 290px;
+    background-color: var(--accent-color);
+    height: 35px;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    cursor: pointer;
+  }
+  
+  .schedule__bottom-btns__connect-btn:hover{
+    background-color: var(--accent-color-hover);
+  }
+  
+  
+  .schedule__bottom-btns__tocourse-btn{
+    width: 290px;
+    background-color: var(--background-color);
+    height: 35px;
+    color: var(--accent-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    cursor: pointer;
+  }
+  
+  .schedule__bottom-btns__tocourse-btn:hover{
+    background-color: var(--background-color-darker);
+  }
+  

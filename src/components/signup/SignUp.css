@@ -1,0 +1,113 @@
+.signup-container{
+    width: 380px;
+    height: 650px; /*!!!*/
+    display: flex;
+    flex-direction: column;
+    margin: auto auto;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.signup-logo{
+    margin-top: 60px;
+}
+
+.signup-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 440px;
+    justify-content: space-between;
+}
+
+.signup-input__email,
+.signup-input__password,
+.signup-input__name,
+.signup-input__phone,
+.signup-input__birth,
+.signup-input__role,
+.signup-input__surname
+{
+    max-width: 380px;
+    height: 57px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.signup-input-email,
+.signup-input-password,
+.signup-input-name,
+.signup-input-phone,
+.signup-input-birth,
+.signup-input-surname,
+.signup-input-role
+{
+    width: 380px;
+    height: 30px;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+/* .signup-input-role{
+    width: 378px;
+    height: 34px;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+} */
+
+
+.signup-input-password:focus,
+.signup-input-email:focus,
+.signup-input-name:focus,
+.signup-input-phone:focus,
+.signup-input-birth:focus,
+.signup-input-role:focus,
+.signup-input-surname:focus{
+    outline: 1px solid #78244C;
+}
+
+.signup-button{
+    width: 100%;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #78244C;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-button:hover{
+    background-color: #a9567e;
+    cursor: pointer;
+    /* border: 1px solid #2e515b; */
+}
+
+.signup-name{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    margin-top: 60px;
+    
+}
+
+.signup-email-text,
+.signup-password-text,
+.signup-name-text,
+.signup-surname-text,
+.signup-role-text,
+.signup-phone-text,
+.signup-birth-text{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.signup-signup{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+.signup-link a{
+    text-decoration: none !important;
+}

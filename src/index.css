@@ -1,0 +1,51 @@
+/* :root{
+  background-color: #c9dbf3;
+} */
+
+
+body {
+  padding-top: 80px; /* Отступ, равный высоте навбара */
+}
+
+
+:root {
+    --accent-color: #392C35;
+    --accent-color-transparent: #392c352f;
+    --accent-color-hover: #622E3A;
+
+    --background-color: #F9FAFB;
+    --background-color-darker: #e4e7eb;
+
+    --light-text-color: #F9FAFB;
+    --dark-text-color: #392C35;
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    --card-color: #fff;
+
+    --placeholder-color: rgb(180, 180, 180);
+
+    --accent-color-light: #513f4b;
+    --accent-color-lighter: #7a5a49;
+
+    --shadow-color: rgba(70, 44, 28, 0.1);
+    
+    --text-color: #333333;
+    --border-color: #e0d6d0;
+
+    --milk-color: #fcfbf5;
+    
+    --menu-width: 240px;
+    --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: var(--background-color);
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+
+  }
+
+#root{
+  background-color: var(--background-color);
+}
+
+body{
+  background-color: var(--background-color) !important;
+}

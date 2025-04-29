@@ -1,0 +1,125 @@
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+  
+  .faq-title {
+    color: #392C35;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-family);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .faq-item {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(57, 44, 53, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    box-shadow: 0 8px 24px rgba(57, 44, 53, 0.12);
+  }
+  
+  .faq-item.active {
+    box-shadow: 0 8px 24px rgba(57, 44, 53, 0.15);
+  }
+  
+  .faq-question {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq-question:hover {
+    background-color: rgba(57, 44, 53, 0.05);
+  }
+  
+  .faq-question h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-family);
+    color: #392C35;
+  }
+  
+  .faq-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .faq-icon-bar {
+    position: absolute;
+    background-color: #392C35;
+    width: 16px;
+    height: 2px;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-icon-bar:first-child {
+    transform: rotate(90deg);
+  }
+  
+  .active .faq-icon-bar:first-child {
+    transform: rotate(0);
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  
+  .active .faq-answer {
+    max-height: 1000px;
+    padding: 0 24px 24px;
+  }
+  
+  .faq-answer p {
+    margin: 0;
+    font-family: var(--font-family);
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .faq-container {
+      padding: 40px 16px;
+    }
+    
+    .faq-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    
+    .faq-question {
+      padding: 20px;
+    }
+    
+    .faq-question h3 {
+      font-size: 1rem;
+      padding-right: 10px;
+    }
+    
+    .active .faq-answer {
+      padding: 0 20px 20px;
+    }
+  }

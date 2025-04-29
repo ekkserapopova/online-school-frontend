@@ -1,0 +1,65 @@
+.code-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .code-page__content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .code-page__editor-container {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+  }
+  
+  .task-result-container {
+    position: relative;
+  }
+  
+  .solve-again-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .solve-again-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .solve-again-button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .solve-again-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Адаптивные стили */
+  @media (max-width: 768px) {
+    .code-page__content {
+      flex-direction: column;
+    }
+    
+    .code-page__editor-container {
+      padding: 12px;
+    }
+    
+    .solve-again-button {
+      width: 100%;
+    }
+  }

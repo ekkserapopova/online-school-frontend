@@ -1,0 +1,49 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="400" height="300" fill="#F9FAFB" rx="10" ry="10" />
+  
+  <!-- Ноутбук - корпус -->
+  <path d="M100,80 L300,80 L300,220 L100,220 Z" fill="#e4e7eb" stroke="#392C35" stroke-width="2" />
+  
+  <!-- Ноутбук - экран -->
+  <rect x="110" y="90" width="180" height="120" fill="#392C35" />
+  
+  <!-- Клавиатура -->
+  <rect x="90" y="220" width="220" height="10" fill="#e0d6d0" />
+  <rect x="80" y="230" width="240" height="20" rx="5" ry="5" fill="#392C35" />
+  
+  <!-- Код на экране -->
+  <text x="120" y="110" fill="#F9FAFB" font-family="monospace" font-size="7">
+    <tspan x="120" y="105">import React from 'react';</tspan>
+    <tspan x="120" y="115">function App() {</tspan>
+    <tspan x="120" y="125">  const [state, setState] = </tspan>
+    <tspan x="120" y="135">    useState(0);</tspan>
+    <tspan x="120" y="145">  return (</tspan>
+    <tspan x="120" y="155">    &lt;div className="app"&gt;</tspan>
+    <tspan x="120" y="165">      &lt;h1&gt;Learn Coding&lt;/h1&gt;</tspan>
+    <tspan x="120" y="175">      &lt;Button onClick={</tspan>
+    <tspan x="120" y="185">        () => setState(</tspan>
+    <tspan x="120" y="195">          state + 1)}</tspan>
+    <tspan x="120" y="205">    &lt;/div&gt;);</tspan>
+  </text>
+  
+  <!-- Кофейная чашка -->
+  <path d="M320,180 L340,180 L336,200 L324,200 Z" fill="#7a5a49" />
+  <path d="M318,180 L342,180 L340,175 L320,175 Z" fill="#513f4b" />
+  <path d="M328,175 
+          C328,170 342,170 342,175" stroke="#7a5a49" stroke-width="2" fill="none" />
+  
+  <!-- Блокнот -->
+  <rect x="60" y="170" width="30" height="40" fill="#fcfbf5" stroke="#e0d6d0" stroke-width="1" />
+  <line x1="65" y1="180" x2="85" y2="180" stroke="#392c352f" stroke-width="1" />
+  <line x1="65" y1="185" x2="85" y2="185" stroke="#392c352f" stroke-width="1" />
+  <line x1="65" y1="190" x2="75" y2="190" stroke="#392c352f" stroke-width="1" />
+  <line x1="65" y1="195" x2="85" y2="195" stroke="#392c352f" stroke-width="1" />
+  <line x1="65" y1="200" x2="85" y2="200" stroke="#392c352f" stroke-width="1" />
+  
+  <!-- Декоративные элементы -->
+  <circle cx="30" cy="30" r="15" fill="#392c352f" />
+  <circle cx="370" cy="30" r="15" fill="#392c352f" />
+  <circle cx="30" cy="270" r="15" fill="#392c352f" />
+  <circle cx="370" cy="270" r="15" fill="#392c352f" />
+</svg>
