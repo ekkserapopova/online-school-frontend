@@ -3,6 +3,16 @@ import { Module } from "../../../modules/module";
 import "./Module.css";
 import { Link } from "react-router-dom";
 
+// Функция для выбора правильной формы слова в зависимости от числа
+function getNoun(number: number, one: string, two: string, five: string) {
+  let n = Math.abs(number) % 100;
+  let n1 = n % 10;
+  if (n > 10 && n < 20) return five;
+  if (n1 > 1 && n1 < 5) return two;
+  if (n1 === 1) return one;
+  return five;
+}
+
 interface ModuleProps {
   module: Module;
   index?: number;
@@ -62,7 +72,13 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
         <div className="module__info">
           <h3 className="module__title">{module.name}</h3>
           <p className="module__meta">
-            {getItemsCount() > 0 ? `${getItemsCount()} элементов` : ''}
+            {getItemsCount() > 0 ? 
+              [
+              module.lessons?.length ? `${module.lessons.length} ${getNoun(module.lessons.length, 'видео-урок', 'видео-урока', 'видео-уроков')}` : null,
+              module.tests?.length ? `${module.tests.length} ${getNoun(module.tests.length, 'тест', 'теста', 'тестов')}` : null,
+              module.tasks?.length ? `${module.tasks.length} ${getNoun(module.tasks.length, 'задание на код', 'задания на код', 'заданий на код')}` : null,
+              ].filter(Boolean).join(', ') : ''}
+
             {module.progress !== undefined && ` | Прогресс: ${module.progress}%`}
           </p>
         </div>

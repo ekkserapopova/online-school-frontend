@@ -24,7 +24,7 @@
   
   
   /* Общие стили для карточек */
-  .profile-info, .course-info {
+  .payment-profile-info, .payment-course-info {
     background-color: var(--card-color);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -33,50 +33,50 @@
   }
   
   /* Блок с данными профиля */
-  .profile-info {
+  .payment-profile-info {
     background-color: var(--accent-color-transparent);
   }
   
-  .section-title {
+  .payment-section-title {
     font-size: 20px;
     font-weight: 600;
     color: var(--accent-color);
     margin: 0 0 16px 0;
   }
   
-  .profile-info__content {
+  .payment-profile-info__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .profile-info__name {
+  .payment-profile-info__name {
     font-size: 18px;
     font-weight: 500;
     color: var(--accent-color);
   }
   
-  .profile-info__email {
+  .payment-profile-info__email {
     font-size: 18px;
     font-weight: 500;
     color: var(--accent-color);
   }
   
   /* Блок информации о курсе */
-  .course-info__title {
+  .payment-course-info__title {
     font-size: 24px;
     font-weight: 700;
     color: var(--dark-text-color);
     margin: 0 0 8px 0;
   }
   
-  .course-info__description {
+  .payment-course-info__description {
     font-size: 16px;
     color: var(--dark-text-color);
     margin: 0 0 24px 0;
   }
   
-  .course-details {
+  .payment-course-details {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -84,15 +84,15 @@
     padding-top: 16px;
   }
   
-  .course-details__duration {
+  .payment-course-details__duration {
     color: var(--dark-text-color);
   }
   
-  .course-details__duration p {
+  .payment-course-details__duration p {
     margin: 4px 0;
   }
   
-  .course-details__price {
+  .payment-course-details__price {
     font-size: 32px;
     font-weight: 700;
     color: var(--accent-color);

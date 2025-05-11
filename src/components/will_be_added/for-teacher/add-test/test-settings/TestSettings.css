@@ -1,0 +1,79 @@
+.test-settings {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border-radius: 10px;
+    background-color: var(--card-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 32px;
+}
+
+.test-settings h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color-light);
+    padding-bottom: 10px;
+}
+
+.test-settings form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.test-settings div {
+    display: flex;
+    flex-direction: column;
+}
+
+.test-settings label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--dark-text-color);
+    font-size: 15px;
+}
+
+.test-settings input,
+.test-settings textarea {
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: var(--milk-color);
+    color: var(--dark-text-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.test-settings textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.test-settings input:focus,
+.test-settings textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.test-settings button {
+    align-self: flex-end;
+    padding: 12px 24px;
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.test-settings button:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

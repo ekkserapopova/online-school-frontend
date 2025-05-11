@@ -17,7 +17,7 @@ const CoursePage:FC = () => {
 
     const getCourse = async (id:number) => {
         try{
-            const response = await api.get(`/course/${id}`);
+            const response = await api.get(`/courses/${id}`);
             const courseData = response.data.course;
             console.log(courseData);
             setCourse(courseData);
@@ -37,7 +37,7 @@ const CoursePage:FC = () => {
 
     const isUserEnrolled = async (courseID:number) => {
         try{
-            const response = await api.get(`/enrolled/course/${courseID}`);
+            const response = await api.get(`/courses/${courseID}/enrolled`);
             const isEnrolled = response.data.is_enrolled;
             setIsEnrolled(isEnrolled);
             console.log(isEnrolled);

@@ -161,6 +161,40 @@
     transform: translateY(0);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   }
+
+  .task-attempts__final-score {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 0 16px 16px;
+  }
+  
+  .task-attempts__final-score-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  
+  .task-attempts__final-score-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .task-attempts__final-score-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+  
+  .task-attempts__final-score-calc-hint {
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+    padding-top: 2px;
+  }
+
   @media (max-width: 1024px) {
     .task-attempts {
       width: 240px;

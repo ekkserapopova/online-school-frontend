@@ -19,9 +19,12 @@ const ProfilePage: FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const user_id = useSelector((state: RootState) => state.auth.user_id);
+  const [photoURL, setPhotoURL] = useState<string | null>(null)
+  const [newPhoto, setNewPhoto] = useState<string>("")
 
   useEffect(() => {
     get_user();
+    getPhoto()
     
   }, []);
 
@@ -44,6 +47,30 @@ const ProfilePage: FC = () => {
     }
   };
 
+  const getPhoto = async () => {
+    try {
+        const response = await api.get('user/photo', { responseType: "blob" });
+        const url = URL.createObjectURL(response.data);
+        setPhotoURL(url);
+    } catch (error) {
+        console.error('Ошибка получения фото пользователя:', error);
+        return null;
+    }
+}
+
+const addPhoto = async (newPhoto: string) =>{
+  try {
+    const response = await api.post('user/photo', {file: newPhoto}, { responseType: "blob",  });
+    const url = URL.createObjectURL(response.data);
+    setPhotoURL(url);
+  } catch (error) {
+      console.error('Ошибка получения фото пользователя:', error);
+      return null;
+}
+}
+
+console.log(newPhoto)
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('ru-RU', {
       day: '2-digit',
@@ -53,9 +80,9 @@ const ProfilePage: FC = () => {
   };
 
   // Функция для получения инициалов из имени и фамилии (для аватара)
-  const getInitials = (name: string, surname: string) => {
-    return `${name.charAt(0)}${surname.charAt(0)}`.toUpperCase();
-  };
+  // const getInitials = (name: string, surname: string) => {
+  //   return `${name.charAt(0)}${surname.charAt(0)}`.toUpperCase();
+  // };
 
 
   return (
@@ -78,16 +105,14 @@ const ProfilePage: FC = () => {
             <div className="profile-card">
               <div className="profile-header">
                 <div className="profile-avatar-container">
-                  {user.photo ? (
-                    <img src={user.photo} alt="Аватар пользователя" className="profile-avatar" />
-                  ) : (
-                    <div className="profile-avatar-placeholder">
-                      {getInitials(user.name, user.surname)}
-                    </div>
-                  )}
+                    <img 
+                            src={photoURL ? photoURL : '../../default-photo.jpg'} 
+                            alt={user.name} 
+                            className="profile-avatar-placeholder"
+                      />
                   <label className="avatar-upload-btn">
                     <span className="avatar-upload-icon">+</span>
-                    <input type="file" accept="image/*" style={{ display: 'none' }} />
+                    <input type="file" accept="image/*" style={{ display: 'none' }} value={newPhoto} onChange={(event => setNewPhoto(event.target.value))}/>
                   </label>
                 </div>
                 <div className="profile-name-container">

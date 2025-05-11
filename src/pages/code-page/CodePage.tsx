@@ -15,6 +15,7 @@ const CodePage: FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [isEditorMode, setIsEditorMode] = useState<boolean>(true);
     const [selectedAttempt, setSelectedAttempt] = useState<StudentTask | null>(null);
+    const [finalScore, setFinalScore] = useState<number | null>(null);
 
     const taskID = Number(window.location.pathname.split('/').pop());
 
@@ -38,29 +39,18 @@ const CodePage: FC = () => {
     const getTaskAttempts = async () => {
         try {
             const response = await api.get(`/task/${taskID}/answers`);
-            // Проверяем структуру ответа и корректно извлекаем массив
-            let attemptsData = [];
-            if (response.data && Array.isArray(response.data.tasks)) {
-                attemptsData = response.data.tasks;
-            } else if (response.data && Array.isArray(response.data)) {
-                attemptsData = response.data;
-            } else {
-                console.warn('Неожиданная структура ответа:', response.data);
-            }
+            const attemptsData = response.data.tasks;
             
-            // Если пустой ответ, используем пустой массив
             setAttempts(attemptsData || []);
             
             console.log("Попытки решения задачи:", attemptsData);
-            // Если есть попытки, выбираем последнюю по умолчанию
             if (attemptsData && attemptsData.length > 0) {
                 const latestAttempt = attemptsData[0]; 
                 setCode(latestAttempt.code);
                 setActiveAttemptId(latestAttempt.id);
                 setSelectedAttempt(latestAttempt);
-                setIsEditorMode(false); // Показываем режим просмотра для последней попытки
+                setIsEditorMode(false); 
             } else {
-                // Если попыток нет, показываем редактор
                 setIsEditorMode(true);
             }
         } catch (error) {
@@ -78,11 +68,74 @@ const CodePage: FC = () => {
             
             // Обновляем список попыток после отправки
             await getTaskAttempts();
+            console.log("Айди отправленного задания:", response.data.student_task.task_id);
+            await pollTaskStatus(response.data.student_task.task_id);
         } catch (error) {
             console.error("Ошибка при отправке ответа:", error);
         } finally {
             setLoading(false);
         }
+    };
+
+    const getFinalScore = async(taskId: number) => {
+        try {
+            const response = await api.get(`/task/${taskId}/score`);
+            const finalScoreData = Math.round(response.data.score * 100) / 100;
+            console.log("Итоговая оценка:", finalScoreData);
+            setFinalScore(finalScoreData);
+        } catch (error) {
+            console.error("Ошибка при получении итоговой оценки:", error);
+        }
+    };
+
+    
+    // Функция для лонг поллинга статуса задачи
+    const pollTaskStatus = async (taskId: number) => {
+        const maxAttempts = 15; // максимальное количество попыток
+        const delay = 2000; // задержка между запросами в мс (2 секунды)
+        let attempts = 0;
+        
+        const checkStatus = async () => {
+            try {
+                const response = await api.get(`/task/${taskId}/answer`);
+                const taskData = response.data.task;
+                
+                // Проверяем изменился ли статус задачи
+                if (taskData && taskData.status !== 'in progress') {
+                    console.log(`Задача обработана, статус: ${taskData.status}`);
+                    
+                    // Обновляем список попыток после обработки
+                    await getTaskAttempts();
+                    setLoading(false);
+                    return true;
+                } else {
+                    attempts++;
+                    if (attempts >= maxAttempts) {
+                        console.log("Превышено максимальное количество попыток проверки статуса");
+                        setLoading(false);
+                        return true;
+                    }
+                    
+                    // Продолжаем проверять
+                    return false;
+                }
+            } catch (error) {
+                console.error("Ошибка при проверке статуса задачи:", error);
+                setLoading(false);
+                return true;
+            }
+        };
+        
+        // Рекурсивная функция для повторных запросов с задержкой
+        const poll = async () => {
+            const completed = await checkStatus();
+            if (!completed) {
+                await new Promise(resolve => setTimeout(resolve, delay));
+                await poll();
+            }
+        };
+        
+        await poll();
     };
 
     // Обновленный обработчик выбора попытки
@@ -126,6 +179,7 @@ const CodePage: FC = () => {
     useEffect(() => {
         getTask();
         getTaskAttempts();
+        getFinalScore(taskID)
     }, [taskID]);
 
     // Удаляем кнопку "Решить еще раз" из блока результата
@@ -140,7 +194,8 @@ return (
                 taskId={taskID}
                 onSelectAttempt={handleSelectAttempt}
                 activeAttemptId={activeAttemptId}
-                onSolveAgain={handleSolveAgain} // Передаем обработчик для кнопки
+                onSolveAgain={handleSolveAgain} 
+                finalscore={finalScore}                
             />
             
             <div className="code-page__editor-container">

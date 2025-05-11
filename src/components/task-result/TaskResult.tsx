@@ -1,6 +1,6 @@
 import React from 'react';
 import CodeMirror, { basicSetup } from '@uiw/react-codemirror';
-import { dracula } from '@uiw/codemirror-theme-dracula';
+import {vscodeDark} from '@uiw/codemirror-theme-vscode';
 import { python } from '@codemirror/lang-python';
 import { EditorView } from '@codemirror/view';
 
@@ -44,7 +44,7 @@ const AssignmentViewer: React.FC<AssignmentViewerProps> = ({
           <CodeMirror
             value={code}
             height="280px"
-            theme={dracula}
+            theme={vscodeDark}
             readOnly={true}
             extensions={[
                 ...basicSetup({

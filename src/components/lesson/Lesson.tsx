@@ -41,7 +41,7 @@ const Lesson: React.FC<LessonProps> = ({
             <div className="lesson__progress-bar">
               <div className="lesson__progress-filled"></div>
             </div>
-            <span className="lesson__progress-text">3/12 уроков пройдено</span>
+            {/* <span className="lesson__progress-text">3/12 уроков пройдено</span> */}
           </div>
         </div>
       </header>
@@ -98,12 +98,12 @@ const Lesson: React.FC<LessonProps> = ({
               {isCompleted ? 'Урок пройден ✓' : 'Отметить как пройденный'}
             </button>
             
-            <button 
+            {/* <button 
               className="lesson__chat-button"
               onClick={() => setShowChat(!showChat)}
             >
               Задать вопрос преподавателю
-            </button>
+            </button> */}
           </div>
 
           {nextLessonTitle && (
@@ -117,7 +117,7 @@ const Lesson: React.FC<LessonProps> = ({
         </aside>
       </div>
 
-      {showChat && (
+      {/* {showChat && (
         <div className="lesson__chat">
           <div className="lesson__chat-header">
             <h3 className="lesson__chat-title">Чат с преподавателем</h3>
@@ -141,7 +141,7 @@ const Lesson: React.FC<LessonProps> = ({
             <button className="lesson__chat-send">Отправить</button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

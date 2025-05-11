@@ -1,0 +1,113 @@
+.question-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    padding: 28px;
+    background-color: var(--card-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.question-form h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color-light);
+    padding-bottom: 10px;
+}
+
+.question-input {
+    margin-bottom: 20px;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--dark-text-color);
+    background-color: var(--milk-color);
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.question-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.answers-section {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.answers-title {
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--dark-text-color);
+    font-size: 16px;
+}
+
+.answer-variant {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+}
+
+.answer-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--dark-text-color);
+    background-color: var(--milk-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.answer-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.add-answer-button {
+    margin-top: 12px;
+    background-color: var(--accent-color-light);
+    color: var(--light-text-color);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.add-answer-button:hover {
+    background-color: var(--accent-color-lighter);
+    transform: translateY(-2px);
+}
+
+.submit-button {
+    margin-top: 24px;
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    align-self: flex-end;
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

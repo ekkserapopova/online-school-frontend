@@ -4,9 +4,10 @@ export interface Task {
     id: number;
     name: string;
     description: string;
-    deadline: string;
-    module_id: number;
-    student_tasks: StudentTask[];
+    deadline?: string;
+    is_active: boolean;
+    module_id?: number;
+    student_tasks?: StudentTask[];
 
 }
 

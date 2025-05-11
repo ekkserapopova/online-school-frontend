@@ -34,8 +34,8 @@ const CalendarPage: React.FC = () => {
     const getLessons = async () => {
         setIsLoading(true);
         try {
-            const responsePast = await api.get(`/schedule`, {params: {period: 'past'}});
-            const responseFuture = await api.get(`/schedule`, {params: {period: 'future'}});
+            const responsePast = await api.get(`/lessons`, {params: {period: 'past'}});
+            const responseFuture = await api.get(`/lessons`, {params: {period: 'future'}});
             const mycourses = await api.get(`/courses/user`);
             console.log('Мои курсы:', mycourses.data.courses);
             const enrolledCourses = mycourses.data.courses;

@@ -1,0 +1,116 @@
+.course-header {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  
+  .course-header__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+  }
+  
+  .course-header__title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+  }
+  
+  .course-header__description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    color: #555;
+  }
+  
+  .course-header__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 10px;
+  }
+  
+  /* Блок с информацией о преподавателе */
+  .course-header__teacher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .course-header__teacher-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .course-header__teacher-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Блок с дополнительной информацией */
+  .course-header__info-block {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .course-header__difficulty,
+  .course-header__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .course-header__label {
+    font-size: 14px;
+    color: #777;
+    margin-right: 5px;
+  }
+  
+  .course-header__stars {
+    display: flex;
+  }
+  
+  .course-header__difficulty-star {
+    font-size: 16px;
+    color: #ddd;
+  }
+  
+  .course-header__difficulty-star--filled {
+    color: #ffc107;
+  }
+  
+  .course-header__price-value {
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  /* Языки программирования */
+  .course-header__languages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .course-header__language-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .course-header__language-tag {
+    background-color: #e9ecef;
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  

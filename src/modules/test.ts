@@ -2,12 +2,15 @@
 export interface Test {
     id: number;
     name: string;
-    description: string;
-    lesson_id: number;
-    course_id: number;
-    deadline: string;
-    questions: Question[];
-    completed_tests: CompletedTests[]
+    description?: string;
+    lesson_id?: number;
+    course_id?: number;
+    deadline?: string;
+    questions?: Question[];
+    completed_tests?: CompletedTests[]
+    time_limit?: number;
+    count_questions?: number;
+    is_active?: boolean;
 }
 
 export interface CompletedTests {
@@ -32,6 +35,7 @@ export interface AnswerVariant{
     number_id: number;
     text: string;
     question_id: number;
+    is_right: boolean;
 }
 
 export interface StudentAnswer {

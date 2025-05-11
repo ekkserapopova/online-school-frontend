@@ -1,0 +1,31 @@
+.progress-bar-container {
+    height: 8px;
+    background-color: var(--background-color-darker);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .status-low .progress-bar-fill {
+    background-color: var(--accent-color-light);
+    opacity: 0.6;
+  }
+  
+  .status-medium .progress-bar-fill {
+    background-color: var(--accent-color-light);
+    opacity: 0.8;
+  }
+  
+  .status-high .progress-bar-fill {
+    background-color: var(--accent-color);
+  }
+  
+  .status-complete .progress-bar-fill {
+    background-color: var(--accent-color-hover);
+  }

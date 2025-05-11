@@ -19,6 +19,8 @@ body {
     --light-text-color: #F9FAFB;
     --dark-text-color: #392C35;
 
+    --dark-text-color-hover: #622E3A;
+
     --shadow-color: rgba(0, 0, 0, 0.2);
 
     --card-color: #fff;

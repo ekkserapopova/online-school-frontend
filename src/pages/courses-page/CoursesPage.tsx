@@ -61,7 +61,7 @@ const CoursesPage: FC = () => {
 
     const getCourse  = async (id: number) => {
         try {
-            const response = await api.get(`/course/${id}`);
+            const response = await api.get(`/courses/${id}`);
             const courseData = response.data.course;
             console.log(courseData);
             navigate(`/coursepreview/${id}`);

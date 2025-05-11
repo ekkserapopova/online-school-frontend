@@ -37,7 +37,7 @@ const MyCourses: FC<MyCoursesProps> = ({ courses }) => {
                         <div key={course.id} className="my-courses__course-card">
                             <div className="my-courses__course-card__image-container">
                                 <img 
-                                    src={photo ? photo : '../../default-course.jpg'} 
+                                    src={ '../../default-course.jpg'} 
                                     alt={course.name} 
                                     className="my-courses__course-card__image" 
                                 />

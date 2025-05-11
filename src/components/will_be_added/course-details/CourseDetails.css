@@ -1,0 +1,213 @@
+.course-details-container {
+    padding: 1.5rem 2rem;
+  }
+  
+  .back-navigation {
+    margin-bottom: 2rem;
+  }
+  
+  .back-button {
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .back-button svg {
+    margin-right: 0.5rem;
+  }
+  
+  .course-title {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--dark-text-color);
+    margin-bottom: 2.5rem;
+  }
+  
+  .course-stats {
+    margin-bottom: 3rem;
+  }
+  
+  .stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .progress-value {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--dark-text-color);
+  }
+  
+  .progress-label {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-top: 0.25rem;
+  }
+  
+  .tasks-info {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+  
+  .course-progress-bar {
+    height: 8px;
+    background-color: var(--background-color-darker);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+  .tasks-filter {
+    display: flex;
+    border-bottom: 1px solid var(--background-color-darker);
+    margin-bottom: 2.5rem;
+  }
+  
+  .filter-button {
+    background: none;
+    border: none;
+    padding: 1rem 0;
+    margin-right: 2rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .filter-button:hover {
+    opacity: 1;
+  }
+  
+  .filter-button.active {
+    color: var(--accent-color);
+    opacity: 1;
+    font-weight: 500;
+  }
+  
+  .filter-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+  }
+  
+  .tasks-section {
+    margin-bottom: 3rem;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dark-text-color);
+    margin-bottom: 1.5rem;
+  }
+  
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--background-color-darker);
+  }
+  
+  .task-info {
+    flex: 1;
+  }
+  
+  .task-title {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .check-icon {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+  }
+  
+  .task-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .task-type {
+    color: var(--accent-color-light);
+  }
+  
+  .task-due {
+    color: var(--accent-color-hover);
+  }
+  
+  .task-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .task-button:hover {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+  }
+  
+  .no-tasks {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-color);
+    opacity: 0.6;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .course-details-container {
+      padding: 1rem;
+    }
+    
+    .task-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .task-button {
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }

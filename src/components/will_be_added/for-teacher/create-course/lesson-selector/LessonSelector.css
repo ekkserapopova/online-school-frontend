@@ -1,0 +1,135 @@
+.lesson-selector {
+    margin-top: 2rem;
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+  }
+  
+  .lesson-selector__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+  
+  .lesson-selector__header h4 {
+    margin: 0;
+    font-size: var(--font-md);
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+  
+  .available-lessons {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+  }
+  
+  .available-lessons h5,
+  .selected-lessons h5 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    font-size: var(--font-base);
+    color: var(--accent-color-light);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .no-lessons {
+    color: var(--placeholder-color);
+    font-style: italic;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--milk-color);
+    border-radius: var(--border-radius);
+  }
+  
+  .lessons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .lesson-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+  }
+  
+  .lesson-item:last-child {
+    border-bottom: none;
+  }
+  
+  .lesson-item:hover {
+    background-color: var(--milk-color);
+  }
+  
+  .lesson-order {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+  
+  .lesson-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .lesson-type-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: var(--accent-color-light);
+  }
+  
+  .lesson-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .lesson-name {
+    font-weight: 500;
+    color: var(--dark-text-color);
+  }
+  
+  .lesson-description {
+    font-size: var(--font-sm);
+    color: var(--accent-color-light);
+  }
+  
+  .selected-lessons {
+    margin-top: 2rem;
+  }
+  
+  .reorder-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .reorder-btn {
+    border: none;
+    background-color: transparent;
+    color: var(--accent-color);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .reorder-btn:hover {
+    background-color: var(--accent-color-transparent);
+  }

@@ -1,4 +1,6 @@
-import { Module } from "./lesson";
+import { Language } from "./languages";
+import { Module } from "./module";
+import { StudentTask, Task } from "./task";
 import { User } from "./user";
 
 export const mockCourses: OneCourse[] = [
@@ -28,8 +30,11 @@ export interface OneCourse {
     description: string,
     difficulty: number,
     price: number,
-    teacherID: number
+    teacherID: number,
+    image: string
     teacher: User
     modules: Module[]
+    tasks: Task[]
+    languages: Language[]
 }
    

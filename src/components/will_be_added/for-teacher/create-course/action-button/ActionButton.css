@@ -1,0 +1,53 @@
+.action-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--background-color-darker);
+    color: var(--text-color);
+  }
+  
+  .action-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .action-button:active {
+    transform: translateY(0);
+  }
+  
+  .action-button--primary {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+  }
+  
+  .action-button--primary:hover {
+    background-color: var(--accent-color-hover);
+  }
+  
+  .action-button--secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+  }
+  
+  .action-button--secondary:hover {
+    background-color: var(--accent-color-transparent);
+  }
+  
+  .action-button--small {
+    padding: 0.5rem 0.875rem;
+    font-size: var(--font-sm);
+  }
+  
+  .action-button svg {
+    width: 1.25em;
+    height: 1.25em;
+  }

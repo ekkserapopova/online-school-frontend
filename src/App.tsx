@@ -23,6 +23,15 @@ import CodeBlock from './pages/Ex.tsx';
 import CodeEditor from './pages/Ex.tsx';
 import TaskResultPage from './pages/task-result-page/TaskResultPage.tsx';
 import LessonPage from './pages/ lesson-page/LessonPage.tsx';
+import StudentDashboard from './components/will_be_added/student-dashboard/StudentDashboard.tsx';
+import CourseBuilder from './components/will_be_added/for-teacher/create-course/course-builder/CourseBuilder.tsx';
+import TestCreatedPage from './components/will_be_added/for-teacher/add-test/page/TestCreatedPage.tsx';
+import TestConstructorPage from './components/will_be_added/for-teacher/add-test/page/TestConstructorPage.tsx';
+import TeacherCoursesPage from './components/will_be_added/for-teacher/add-test/page/TecherCoursesPage.tsx';
+import CreatingCourse from './pages/creating-course/course-info/CreatingCourse.tsx';
+import CreatingModule from './pages/creating-course/modules/CreatingModule.tsx';
+import HomePage from './pages/home-page/HomePage.tsx';
+// import TeacherDashboard from './components/will_be_added/for-teacher/teacher-dashboard/TeacherDashboard.tsx';
 
 
 interface UserPayload extends JwtPayload {
@@ -108,6 +117,21 @@ function App() {
           <Route path="/task/results/:id" element={<TaskResultPage />} />
 
           <Route path="/lesson" element={<LessonPage />} />
+
+          <Route path="/progress" element={<StudentDashboard />} />
+
+          <Route path="/teacher" element={<CourseBuilder />} />
+          <Route path="/module/:id/createtest" element={<TestConstructorPage />} />
+          <Route path="/module/:id/createdtest/:testID" element={<TestCreatedPage />} />
+
+        <Route path="/teacher/courses" element={<TeacherCoursesPage/>} />
+        <Route path="/create/course" element={<CreatingCourse/>} />
+
+        <Route path="/course/edit/:courseID" element={<CreatingModule/>} />
+
+        <Route path="" element={<HomePage/>} />
+
+
         </Routes>
       </Router>
     </>

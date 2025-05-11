@@ -1,0 +1,67 @@
+.question-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    background-color: var(--card-color);
+    transition: all 0.25s ease;
+}
+
+.question-item:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    border-color: var(--accent-color-light);
+}
+
+.question-text {
+    flex: 1;
+    font-size: 15px;
+    color: var(--dark-text-color);
+    line-height: 1.5;
+    padding-right: 12px;
+}
+
+.question-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.select-button {
+    padding: 8px 16px;
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.select-button:hover {
+    background-color: var(--accent-color-hover);
+    transform: scale(1.05);
+}
+
+.delete-button {
+    padding: 8px;
+    background-color: transparent;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button:hover {
+    background-color: var(--error-color);
+    color: white;
+}

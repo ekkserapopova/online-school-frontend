@@ -1,0 +1,125 @@
+.homepage {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    background-color: #392c35;
+    color: #fff;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .header p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .cta-button {
+    background-color: #ff7a5a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #e06650;
+  }
+  
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about,
+  .benefits,
+  .reviews,
+  .faq {
+    margin-bottom: 3rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about h2,
+  .benefits h2,
+  .reviews h2,
+  .faq h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #392c35;
+  }
+  
+  .benefits-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+  
+  .benefits-list li {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+  }
+  
+  .benefits-list img {
+    width: 60px;
+    margin-bottom: 1rem;
+  }
+  
+  .reviews-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .reviews-list li {
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reviews-list strong {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .faq ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .faq li {
+    margin-bottom: 1.5rem;
+  }
+  
+  .faq strong {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #392c35;
+  }

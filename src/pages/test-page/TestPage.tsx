@@ -92,7 +92,7 @@ const TestPage: React.FC = () => {
     try {
       setLoading(true);
       console.log('Загрузка теста...');
-      const response = await api.get(`/course/1/test/${testID}`);
+      const response = await api.get(`/courses/1/test/${testID}`);
       const testData = response.data.test;
       setTest(testData);
       

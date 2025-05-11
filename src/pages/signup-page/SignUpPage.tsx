@@ -8,7 +8,7 @@ import { UserPayload } from "../login-page/LoginPage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function convertDateFormat(dateStr: string): string {
+export function convertDateFormat(dateStr: string): string {
     // Парсим строку даты в объект Date
     const date = new Date(dateStr);
     

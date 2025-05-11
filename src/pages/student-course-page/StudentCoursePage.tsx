@@ -5,12 +5,14 @@ import ModuleComponent from "../../components/student-course-page/module/Module"
 import api from "../../modules/login";
 import { OneCourse } from "../../modules/courses";
 import Foooter from "../../components/footer/Foooter";
+import { User } from "../../modules/user";
 
 
 const StudentCoursePage: React.FC = () => {
     // const { title, description, modules, teacher } = courseData;
     const [course, setCourse] = React.useState<OneCourse | null>(null);
     const courseID = Number(window.location.pathname.split('/').pop());
+    const [teacher, setTeacher] = React.useState<User | null>(null);
 
     const getCourse = async (courseID: number) => {
         try {
@@ -20,14 +22,28 @@ const StudentCoursePage: React.FC = () => {
                 return;
             }
 
-            const course = await api.get(`/course/user/${courseID}`)
+            const course = await api.get(`/courses/${courseID}/user`)
             console.log(course.data);
             const courseData = course.data.course;
             setCourse(courseData);
+            const teacherID = courseData.teacher_id;
+            getCourseTeacher(teacherID);
 
         }
         catch (error) {
             console.error("Ошибка при получении данных курса:", error);
+        }
+    };
+
+    const getCourseTeacher = async (teacherID: number) => {
+        try {
+            const response = await api.get(`/user/${teacherID}`)
+            const teacherData = response.data.user;
+            console.log(teacherData);
+            setTeacher(teacherData);
+        }
+        catch (error) {
+            console.error("Ошибка при получении данных преподавателя:", error);
         }
     };
 
@@ -47,7 +63,7 @@ const StudentCoursePage: React.FC = () => {
                         <h1 className="student-course__title">{course && course.name}</h1>
                         <p className="student-course__description">{course && course.description}</p>
                         <div className="student-course__teacher">
-                            Преподаватель: {course && course.teacher && course.teacher.name}
+                            Преподаватель: {teacher && `${teacher.name} ${teacher.surname}`}
                         </div>
                     </div>
                 </div>

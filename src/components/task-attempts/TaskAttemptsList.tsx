@@ -7,14 +7,16 @@ interface TaskAttemptsListProps {
   taskId: number;
   onSelectAttempt: (code: string, attemptId: number) => void;
   activeAttemptId?: number;
-  onSolveAgain: () => void; // Добавляем обработчик для кнопки "Решить еще раз"
+  onSolveAgain: () => void; 
+  finalscore: number | null;
 }
 
 const TaskAttemptsList: React.FC<TaskAttemptsListProps> = ({ 
   attempts, 
   onSelectAttempt,
   activeAttemptId,
-  onSolveAgain
+  onSolveAgain,
+  finalscore
 }) => {
   // Проверяем, что attempts - это массив
   const attemptsList = Array.isArray(attempts) ? attempts : [];
@@ -53,7 +55,16 @@ const TaskAttemptsList: React.FC<TaskAttemptsListProps> = ({
   return (
     <div className="task-attempts">
       <h2 className="task-attempts__title">История решений</h2>
-      
+      {/* Блок с итоговой оценкой */}
+      <div className="task-attempts__final-score">
+        <div className="task-attempts__final-score-content">
+          <span className="task-attempts__final-score-label">Итоговая оценка:</span>
+          <span className="task-attempts__final-score-value">{finalscore ? finalscore : "🤷‍♀️"}</span>
+        </div>
+        <div className="task-attempts__final-score-calc-hint">
+          рассчитывается как среднее арифметическое
+        </div>
+      </div>
       {/* Кнопка "Решить еще раз" в начале компонента */}
       <div className="task-attempts__new-solution">
         <button 

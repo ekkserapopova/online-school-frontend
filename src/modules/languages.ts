@@ -14,6 +14,8 @@ export const mockLangs: Language[] = [
    export interface Language {
      id: number
      name: string
-     course_id: number
+     course_id?: number
    }
+
+   
    

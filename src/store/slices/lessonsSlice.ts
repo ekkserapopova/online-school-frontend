@@ -39,7 +39,7 @@ export const fetchLessons = createAsyncThunk(
     'lessons/fetchLessons',
     async ({ month, year, userId }: { month: number; year: number; userId: number }, { rejectWithValue }) => {
         try {
-            const response = await api.get(`/schedule/${userId}`, {
+            const response = await api.get(`/lessons/${userId}`, {
                 params: { month, year }
             });
             return {

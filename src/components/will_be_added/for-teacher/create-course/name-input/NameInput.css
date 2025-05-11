@@ -1,0 +1,46 @@
+.name-input {
+    margin-bottom: 1.5rem;
+  }
+  
+  .name-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark-text-color);
+    font-size: var(--font-base);
+  }
+  
+  .name-input input,
+  .name-input textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-base);
+    font-family: inherit;
+    background-color: var(--card-color);
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+  
+  .name-input textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .name-input input:hover,
+  .name-input textarea:hover {
+    border-color: var(--accent-color-light);
+  }
+  
+  .name-input input:focus,
+  .name-input textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-color-transparent);
+  }
+  
+  .name-input input::placeholder,
+  .name-input textarea::placeholder {
+    color: var(--placeholder-color);
+  }

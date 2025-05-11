@@ -18,24 +18,24 @@ const PaymentForm: FC<PaymentFormProps> = ({payment, onSubmit}) => {
       </div> */}
       {payment &&
       (
-      <><div className="profile-info">
-        <h2 className="section-title">Данные профиля</h2>
-        <div className="profile-info__content">
-          <div className="profile-info__name">{payment.student.surname} {payment.student.name}</div>
-          <div className="profile-info__email">{payment.student.email}</div>
+      <><div className="payment-profile-info">
+        <h2 className="payment-section-title">Данные профиля</h2>
+        <div className="payment-profile-info__content">
+          <div className="payment-profile-info__name">{payment.student.surname} {payment.student.name}</div>
+          <div className="payment-profile-info__email">{payment.student.email}</div>
         </div>
       </div>
       
-      <div className="course-info">
-        <h2 className="course-info__title">{payment.course.name}</h2>
-        <p className="course-info__description">{payment.course.description}</p>
+      <div className="payment-course-info">
+        <h2 className="payment-course-info__title">{payment.course.name}</h2>
+        <p className="payment-course-info__description">{payment.course.description}</p>
         
-        <div className="course-details">
-          <div className="course-details__duration">
+        <div className="payment-course-details">
+          <div className="payment-course-details__duration">
             <p>Длительность: 12 недель</p>
             <p>Старт: 15 апреля 2025</p>
           </div>
-          <div className="course-details__price">0 у.е.</div>
+          <div className="payment-course-details__price">0 у.е.</div>
         </div>
       </div>
       

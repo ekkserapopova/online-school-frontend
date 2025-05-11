@@ -45,7 +45,7 @@ const PaymentPage:FC = () => {
 
     const enrollToCourse = async (courseID:number) => {
         try{
-            const response = await api.post(`/enroll/${courseID}`);
+            const response = await api.post(`/courses/${courseID}/enroll`);
             const enrollData = response.data.enroll;
             console.log(enrollData);
             navigate('/schedule')
