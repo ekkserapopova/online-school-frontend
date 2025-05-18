@@ -4,6 +4,7 @@ import Navibar from "../../components/navbar/Navibar";
 import api from "../../modules/login";
 import { Payment } from "../../modules/payment";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const PaymentPage:FC = () => {
     const courseId = Number(window.location.pathname.split('/').pop())
@@ -14,7 +15,14 @@ const PaymentPage:FC = () => {
     
     const getPayment = async (courseID:number) => {
         try {
-            const response = await api.get(`/payment/course/${courseID}`);
+            const response = await axios.get(
+                `http://localhost:8080/api/payment/course/${courseID}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const paymentData = response.data.payment;
             setPayment(paymentData);
             setIsLoading(false);
@@ -30,7 +38,15 @@ const PaymentPage:FC = () => {
 
     const addPayment = async(courseID:number) => {
         try{
-            const response = await api.post(`/payment/course/${courseID}`)
+            const response = await axios.post(
+                `http://localhost:8080/api/payment/course/${courseID}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            )
             const paymentData = response.data.payment
             setPayment(paymentData)
             console.log(paymentData)
@@ -45,7 +61,15 @@ const PaymentPage:FC = () => {
 
     const enrollToCourse = async (courseID:number) => {
         try{
-            const response = await api.post(`/courses/${courseID}/enroll`);
+            const response = await axios.post(
+                `http://localhost:8080/api/courses/${courseID}/enroll`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const enrollData = response.data.enroll;
             console.log(enrollData);
             navigate('/schedule')
@@ -56,7 +80,15 @@ const PaymentPage:FC = () => {
 
     const putPayingStatus = async (courseID:number) => {
         try{
-            const response = await api.put(`/payment/course/${courseID}`, { status: 'paid' });
+            const response = await axios.put(
+                `http://localhost:8080/api/payment/course/${courseID}`,
+                { status: 'paid' },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const paymentData = response.data.payment;
             setPayment(paymentData);
             console.log(paymentData);

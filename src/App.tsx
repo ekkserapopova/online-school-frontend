@@ -3,15 +3,12 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/login-page/LoginPage'
 import SignupPage from './pages/signup-page/SignUpPage'
-import TeachersPage from './pages/teachers-page/TeachersPage'
 import OneTeacherPage from './pages/one-teacher-page/OneTeacherPage'
-import ProfilePage from './pages/profile-page/ProfilePage'
-import React, { useState } from 'react';
+import React from 'react';
 // import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { loginUser } from './store/slices/authSlice.ts';
-import api from './modules/login.ts';
 import SchedulePage from './pages/schedule-page/SchedulePage.tsx';
 import CoursePage from './pages/OneCourse.tsx';
 import PaymentPage from './pages/payment-page/PaymentPage.tsx';
@@ -19,11 +16,8 @@ import TestPage from './pages/test-page/TestPage.tsx';
 import TestResultsPage from './pages/tests-result/TestResultsPage.tsx';
 import StudentCoursePage from './pages/student-course-page/StudentCoursePage.tsx';
 import CodePage from './pages/code-page/CodePage.tsx';
-import CodeBlock from './pages/Ex.tsx';
-import CodeEditor from './pages/Ex.tsx';
 import TaskResultPage from './pages/task-result-page/TaskResultPage.tsx';
 import LessonPage from './pages/ lesson-page/LessonPage.tsx';
-import StudentDashboard from './components/will_be_added/student-dashboard/StudentDashboard.tsx';
 import CourseBuilder from './components/will_be_added/for-teacher/create-course/course-builder/CourseBuilder.tsx';
 import TestCreatedPage from './components/will_be_added/for-teacher/add-test/page/TestCreatedPage.tsx';
 import TestConstructorPage from './components/will_be_added/for-teacher/add-test/page/TestConstructorPage.tsx';
@@ -31,6 +25,10 @@ import TeacherCoursesPage from './components/will_be_added/for-teacher/add-test/
 import CreatingCourse from './pages/creating-course/course-info/CreatingCourse.tsx';
 import CreatingModule from './pages/creating-course/modules/CreatingModule.tsx';
 import HomePage from './pages/home-page/HomePage.tsx';
+import axios from 'axios';
+import { RootState } from './store/store.ts';
+import TeacherTaskResultsPage from './pages/teacher-tasks-result/TeacherTaskResultsPage.tsx';
+import TeacherTestResultsPage from './pages/teacher-test-results/TeacherTestResultsPage.tsx';
 // import TeacherDashboard from './components/will_be_added/for-teacher/teacher-dashboard/TeacherDashboard.tsx';
 
 
@@ -41,7 +39,7 @@ interface UserPayload extends JwtPayload {
 function App() {
   const dispatch = useDispatch();
   // const navigate = useNavigate()
-
+  const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
 
   const getInitialUserInfo = async () => {
     try {
@@ -49,6 +47,17 @@ function App() {
       
       if (!token) {
         console.log('Пользователь не авторизован!!!');
+        dispatch(
+          loginUser({
+            user_id: null,
+            is_authenticated: false,
+            user_name: null,
+            is_teacher: false,
+          })
+        );
+
+        
+        console.log(is_authenticated);
         return;
       }
 
@@ -56,44 +65,47 @@ function App() {
                   
       const userId = Number(decodedToken.user_id);
 
-      const response = await api.get(`/user/${userId}`)
+      const response = await axios.get(`http://localhost:8080/api/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
-      const userData = response.data.user
+      const userData = response.data
+      console.log(userData)
       
 
       dispatch(
         loginUser({
           user_id: userId,
           is_authenticated: true,
-          user_name: userData.name
+          user_name: userData.name,
+          is_teacher: userData.is_teacher,
         })
       );
       
     } 
     catch (error) {
+      console.error('Ошибка при получении информации о пользователе:', error);
       console.log('Пользователь не авторизован!!!');
       localStorage.removeItem('auth_token');
       dispatch(
         loginUser({
           user_id: null,
           is_authenticated: false,
-          user_name: null
+          user_name: null,
+          is_teacher: false,
         })
       );
-      // navigate("/login")
+      // window.location.href = '/login';
+      console.log('Код после редиректа'); // Проверка, выполняется ли код после редиректа
+
     }
   }
   
   React.useEffect(() => {
     getInitialUserInfo();
-  }, [])
-
-  const [savedCode, setSavedCode] = useState<string>('');
-  
-  const handleCodeChange = (newCode: string) => {
-    console.log('Код изменен:', newCode);
-    setSavedCode(newCode);
-  };
+  }, [is_authenticated])
 
 
   return (
@@ -103,9 +115,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/courses" element={<CourcesPage />} />
-          <Route path="/teachers" element={<TeachersPage />} />
           <Route path="/teachers/1" element={<OneTeacherPage />} />
-          <Route path="/user/:id" element={<ProfilePage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/coursepreview/:id" element={<CoursePage />} />
           <Route path="/payment/:id" element={<PaymentPage />} />
@@ -116,9 +126,8 @@ function App() {
           <Route path="/task/:id" element={<CodePage />} />
           <Route path="/task/results/:id" element={<TaskResultPage />} />
 
-          <Route path="/lesson" element={<LessonPage />} />
+          <Route path="/lesson/:id" element={<LessonPage />} />
 
-          <Route path="/progress" element={<StudentDashboard />} />
 
           <Route path="/teacher" element={<CourseBuilder />} />
           <Route path="/module/:id/createtest" element={<TestConstructorPage />} />
@@ -130,6 +139,9 @@ function App() {
         <Route path="/course/edit/:courseID" element={<CreatingModule/>} />
 
         <Route path="" element={<HomePage/>} />
+
+        <Route path="/all/tasks/:taskId" element={<TeacherTaskResultsPage/>} />
+        <Route path="/all/tests/:testId" element={<TeacherTestResultsPage/>} />
 
 
         </Routes>

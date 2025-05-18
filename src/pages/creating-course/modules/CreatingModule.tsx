@@ -9,6 +9,8 @@ import ImageUploadModal from '../../../components/teacher/course-edit/course-ima
 import { Task } from '../../../modules/task';
 import { Test } from '../../../modules/test';
 import api from '../../../modules/login';
+import Navibar from '../../../components/navbar/Navibar';
+import axios from 'axios';
 
 const CreatingModule: React.FC = () => {
   const [course, setCourse] = useState<OneCourse>({} as OneCourse);
@@ -17,7 +19,15 @@ const CreatingModule: React.FC = () => {
 
   const getCourse = async (courseID: number) => {
     try {
-      const response = await api.get(`/courses/${courseID}/teacher`);
+      const token = localStorage.getItem('auth_token');
+      const response = await axios.get(
+        `http://localhost:8080/api/courses/${courseID}/teacher`,
+        {
+          headers: {
+        Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const courseData = response.data.course;
       setCourse(courseData);
     } catch (error) {
@@ -29,7 +39,7 @@ const CreatingModule: React.FC = () => {
 
 useEffect(() => {
   getCourse(courseID);
-  getPhoto()
+  // getPhoto()
   console.log('Получение курса по ID:');
 }, []);
 
@@ -39,48 +49,48 @@ useEffect(() => {
   const [addingLessonToModuleId, setAddingLessonToModuleId] = useState<number | null>(null);
   const [addingTaskToModuleId, setAddingTaskToModuleId] = useState<number | null>(null);
   const [addingTestToModuleId, setAddingTestToModuleId] = useState<number | null>(null);
-  const [openModules, setOpenModules] = useState<Record<number, boolean>>({});
+  // const [openModules, setOpenModules] = useState<Record<number, boolean>>({});
   const [showAddModuleForm, setShowAddModuleForm] = useState<boolean>(false);
-
-  const [photoURL, setPhotoURL] = useState<string | null>(null)
-
-  const getPhoto = async () => {
-    try {
-        const response = await api.get(`courses/${courseID}/image`, { responseType: "blob" });
-        const url = URL.createObjectURL(response.data);
-        setPhotoURL(url);
-    } catch (error) {
-        console.error('Ошибка получения фото пользователя:', error);
-        return null;
-    }
-}
-
-
+  const [openModules, setOpenModules] = useState<Record<number, boolean>>(() => {
+    const savedOpenModules = localStorage.getItem('openModules');
+    return savedOpenModules ? JSON.parse(savedOpenModules) : {};
+  });
   // Обработчики для работы с модулями
   const toggleModule = (moduleId: number) => {
-    setOpenModules({
+    const updatedOpenModules = {
       ...openModules,
       [moduleId]: !openModules[moduleId]
-    });
+    };
+    setOpenModules(updatedOpenModules);
+    localStorage.setItem('openModules', JSON.stringify(updatedOpenModules));
   };
+  
 
-  const handleAddModule = (moduleData: { name: string; description: string }) => {
+  const handleAddModule = async (moduleData: { name: string; description: string }) => {
     if (!moduleData.name.trim()) return;
 
-    const newModuleObject: ModuleType = {
-      id: Math.max(0, ...course.modules.map(m => m.id)) + 1,
-      name: moduleData.name,
-      description: moduleData.description,
-      tasks: [],
-      progress: 0
-    };
-
-    setCourse(prev => ({
-      ...prev,
-      modules: [...prev.modules, newModuleObject]
-    }));
-    
-    setShowAddModuleForm(false);
+    try {
+      const token = localStorage.getItem('auth_token');
+      const response = await axios.post(
+        `http://localhost:8080/api/courses/${courseID}/modules`,
+        moduleData,
+        {
+          headers: {
+        Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const newModule = response.data.module;
+      
+      setCourse(prev => ({
+        ...prev,
+        modules: [...prev.modules, newModule]
+      }));
+      
+      setShowAddModuleForm(false);
+    } catch (error) {
+      console.error('Ошибка добавления модуля:', error);
+    }
   };
 
   // Обработчики для работы с уроками
@@ -118,6 +128,7 @@ useEffect(() => {
           ...module,
           lessons: [...(module.lessons || []), newItem as Lesson],
         };
+        
       } else if (type === 'task') {
         updatedModule = {
           ...module,
@@ -160,24 +171,98 @@ useEffect(() => {
       reader.readAsDataURL(file);
     }
   };
+  // Добавить в состояние
+const [courseImage, setCourseImage] = useState<string | null>(null);
 
-  const handleSaveImage = () => {
-    if (imagePreview) {
-      setCourse(prev => ({
-        ...prev,
-        image: imagePreview
-      }));
-      setShowImageModal(false);
-      setImagePreview(null);
+// Добавить функцию получения фото
+const getPhoto = async () => {
+  try {
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.get(
+      `http://localhost:8080/api/courses/${courseID}/image`,
+      { 
+        responseType: "blob",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const url = URL.createObjectURL(response.data);
+    setCourseImage(url);
+  } catch (error) {
+    console.error('Ошибка получения фото курса:', error);
+    setCourseImage(null);
+  }
+}
+
+// Вызывать getPhoto при загрузке компонента и после изменения изображения
+useEffect(() => {
+  if (courseID) {
+    getCourse(courseID);
+    getPhoto();
+  }
+}, [courseID]);
+
+const handleSaveImage = async () => {
+  if (imagePreview) {
+    try {
+      // Получаем файл из поля ввода напрямую вместо конвертации preview
+      // Найдем input элемент
+      const fileInput = document.getElementById('courseImage') as HTMLInputElement;
+      
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        
+        // Создаем FormData для отправки файла
+        const formData = new FormData();
+        // Используйте правильное имя поля (проверьте документацию API)
+        formData.append('photo', file); // используем 'image' вместо 'photo'
+        
+        const token = localStorage.getItem('auth_token');
+        
+        // Логгируем для отладки
+        console.log('Отправляем изображение:', file.name, file.type, file.size);
+        
+        const response = await axios.patch( 
+          `http://localhost:8080/api/courses/${courseID}/image`,
+          formData,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            },
+          }
+        );
+        
+        console.log('Ответ сервера:', response.data);
+        
+        // Обновляем UI
+        setShowImageModal(false);
+        setImagePreview(null);
+        
+        // Перезагрузка фото с небольшой задержкой для обновления на сервере
+        setTimeout(() => {
+          getPhoto();
+        }, 1000);
+      } else {
+        throw new Error('Файл не найден');
+      }
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error);
+      alert('Не удалось загрузить изображение. Пожалуйста, попробуйте снова.');
     }
-  };
+  }
+};
 
   return (
+    <>
+    <Navibar />
     <div className="course-page">
       {/* Верхняя часть - информация о курсе */}
       <CourseHeader 
         course={course} 
         onImageClick={() => setShowImageModal(true)} 
+        courseImage={courseImage}
       />
 
       {/* Модули курса */}
@@ -205,12 +290,13 @@ useEffect(() => {
 
         onAddModule={handleAddModule}
       />
+      
 
 
       {/* Модальное окно для загрузки изображения */}
       <ImageUploadModal 
         isOpen={showImageModal}
-        currentImage={photoURL ?? undefined}
+        currentImage={course.image ?? undefined}
         imagePreview={imagePreview}
         onClose={() => {
           setShowImageModal(false);
@@ -220,8 +306,8 @@ useEffect(() => {
         onSave={handleSaveImage}
       />
     </div>
-  );
-
+    </>
+  )
 };
 
 export default CreatingModule;

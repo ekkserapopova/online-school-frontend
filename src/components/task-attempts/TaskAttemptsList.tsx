@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './TaskAttemptsList.css';
 import { StudentTask } from '../../modules/task';
 
@@ -52,6 +52,11 @@ const TaskAttemptsList: React.FC<TaskAttemptsListProps> = ({
     }
   };
 
+  useEffect(() => {
+    console.log('final score', finalscore);
+  }
+  , []);
+
   return (
     <div className="task-attempts">
       <h2 className="task-attempts__title">История решений</h2>
@@ -59,7 +64,7 @@ const TaskAttemptsList: React.FC<TaskAttemptsListProps> = ({
       <div className="task-attempts__final-score">
         <div className="task-attempts__final-score-content">
           <span className="task-attempts__final-score-label">Итоговая оценка:</span>
-          <span className="task-attempts__final-score-value">{finalscore ? finalscore : "🤷‍♀️"}</span>
+          <span className="task-attempts__final-score-value">{finalscore ? finalscore : (finalscore === 0? 0:"🤷‍♀️")}</span>
         </div>
         <div className="task-attempts__final-score-calc-hint">
           рассчитывается как среднее арифметическое

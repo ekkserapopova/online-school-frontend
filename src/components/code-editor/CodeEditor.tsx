@@ -105,17 +105,18 @@ const CodeEditorWithCodemirror: FC<CodeEditorProps> = ({ title, description, onS
                 disabled={!pyodideLoaded || loading}
                 style={{
                   cursor: pyodideLoaded ? 'pointer' : 'not-allowed',
-                  opacity: pyodideLoaded ? 1 : 0.7
+                  opacity: pyodideLoaded ? 1 : 0.7,
+                  backgroundColor: 'var(--accent-color)'
                 }}
               >
                 {loading ? 'Загрузка Python...' : 'Запустить код'}
               </button>
               <button
                 className="editor__send-button"
-                style={{ backgroundColor: '#2196F3' }}
+                style={{ backgroundColor: 'var(--accent-color)' }}
                 onClick={onSubmit}
               >
-                Сохранить
+                Отправить
               </button>
             </div>
           </div>

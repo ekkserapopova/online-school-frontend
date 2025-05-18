@@ -51,7 +51,7 @@
 .delete-button {
     padding: 8px;
     background-color: transparent;
-    color: var(--error-color);
+    color: #dc3545;
     border: 1px solid var(--error-color);
     border-radius: 8px;
     cursor: pointer;

@@ -3,26 +3,12 @@ import "./CourseFilter.css";
 import { Language } from "../../modules/languages";
 
 interface CourseFilterProps {
-    isWeb: boolean;
-    isDevOps: boolean;
-    isML: boolean;
-    isAnalytics: boolean;
-    isBackend: boolean;
-    isFrontend: boolean;
     languages?: Language[]; // Make languages an optional prop of Language type
     selectedLanguages: string[]; // Add selected languages prop
-    setIsWeb: (isWeb: boolean) => void;
-    setIsDevOps: (isDevOps: boolean) => void;
-    setIsML: (isML: boolean) => void;
-    setIsAnalytics: (isAnalytics: boolean) => void;
-    setIsBackend: (isBackend: boolean) => void;
-    setIsFrontend: (isFrontend: boolean) => void;
     setSelectedLanguages: (languages: string[]) => void; // Add setter for selected languages
 }
 
 const CourseFilter: FC<CourseFilterProps> = ({
-    isWeb, isDevOps, isML, isAnalytics, isBackend, isFrontend,
-    setIsWeb, setIsDevOps, setIsML, setIsAnalytics, setIsBackend, setIsFrontend,
     languages = [], // Default to empty array if not provided
     selectedLanguages,
     setSelectedLanguages
@@ -60,9 +46,7 @@ const CourseFilter: FC<CourseFilterProps> = ({
 
     return (
         <div className="course-filter">
-
             
-
             {/* Languages */}
             <div className="course-filter__name">Языки</div>
             <div className="dropdown">
@@ -120,7 +104,7 @@ const CourseFilter: FC<CourseFilterProps> = ({
                     </div>
                 )}
             </div>
-            {/* Topics */}
+            {/* Topics
             
             <div className="course-filter__topics">
             <div className="course-filter__name">Темы</div>
@@ -148,8 +132,8 @@ const CourseFilter: FC<CourseFilterProps> = ({
                     <input type="checkbox" checked={isFrontend} onChange={() => setIsFrontend(!isFrontend)} /> 
                     <div className="course-filter__topics__checkbox-text">Фронтенд</div> 
                 </label>
-            </div>
-        </div>
+            </div>*/}
+        </div> 
     );
 };
 

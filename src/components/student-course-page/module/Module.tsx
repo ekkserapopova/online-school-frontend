@@ -94,6 +94,7 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
         <ul className="module__lessons">
           {/* Отображение уроков */}
           {module.lessons && module.lessons.map((lesson) => (
+            <Link to= {`/lesson/${lesson.id}`} className="module__lesson-link">
             <li key={`lesson-${lesson.id}`} className="module__lesson">
               <div className="lesson__icon">
                 {getLessonIcon(lesson.completed || false)}
@@ -105,14 +106,15 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
                 </span>
               </div>
               <div className="lesson__duration">
-                {new Date(lesson.start).toLocaleDateString("ru-RU")}
+                {lesson.start ? new Date(lesson.start).toLocaleDateString("ru-RU") : ""}
               </div>
             </li>
+            </Link>
           ))}
           
           {/* Отображение тестов */}
           {module.tests && module.tests.map((test) => (
-            <Link to={test.completed_tests[0] && test.completed_tests[0].status === 'completed' ? `/test/results/${test.id}` : `/test/${test.id}`} className="module__lesson-link">
+            <Link to={test.completed_tests && test.completed_tests[0] && test.completed_tests[0].status === 'completed' ? `/test/results/${test.id}` : `/test/${test.id}`} className="module__lesson-link">
                 <li key={`test-${test.id}`} className="module__lesson">
               <div className="lesson__icon test__icon">
                 {getTestIcon( false)}
@@ -120,7 +122,7 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
               <div className="lesson__info">
                 <p className="lesson__title">{test.name}</p>
                 <span className={`lesson__type ${ 'lesson__type_test'}`}>
-                  {'Тест'}
+                  {test.completed_tests && test.completed_tests[0] && test.completed_tests[0].status === 'completed' ?'Тест выполнен' : 'Тест'}
                 </span>
               </div>
               <div className="lesson__duration">
@@ -140,7 +142,7 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
               <div className="lesson__info">
                 <p className="lesson__title">{task.name}</p>
                 <span className={`lesson__type ${ 'lesson__type_test'}`}>
-                  {task.student_tasks[0] && task.student_tasks[0].status === 'completed' ? 'Задание выполнено'  : 'Задание'}
+                  {task.student_tasks && task.student_tasks[0] && task.student_tasks[0].status === 'completed' ? 'Задание выполнено'  : 'Задание'}
                 </span>
               </div>
               <div className="lesson__duration">

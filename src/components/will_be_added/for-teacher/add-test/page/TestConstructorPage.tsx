@@ -7,7 +7,7 @@ import QuestionsList from '../question-list/QuestionsList';
 import { convertDateFormat } from '../../../../../pages/signup-page/SignUpPage';
 import { useNavigate } from 'react-router-dom';
 import { response } from 'express';
-
+import axios from 'axios';
 const TestConstructorPage: React.FC = () => {
     const [testName, setTestName] = useState('');
     const [testDescription, setTestDescription] = useState('');
@@ -29,14 +29,23 @@ const TestConstructorPage: React.FC = () => {
         try {
             setStatusMessage(null);
             console.log(moduleID)
-            const response = await api.post(`/module/${moduleID}/createtest`, {
-                name: testName,
-                description: testDescription,
-                deadline: convertDateFormat(deadline),
-                time_limit: timeLimit,
-                count_questions: countQuestions,
-                module_id: moduleID
-            });
+            const authToken = localStorage.getItem('auth_token');
+            const response = await axios.post(
+                `http://localhost:8080/api/module/${moduleID}/createtest`,
+                {
+                    name: testName,
+                    description: testDescription,
+                    deadline: convertDateFormat(deadline),
+                    time_limit: timeLimit,
+                    count_questions: countQuestions,
+                    module_id: moduleID
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`
+                    }
+                }
+            );
 
             const testData = response.data.test;
             setTest(testData);

@@ -2,8 +2,7 @@ import { FC, useEffect, useState } from "react";
 import AssignmentViewer from "../../components/task-result/TaskResult"
 import Navibar from "../../components/navbar/Navibar";
 import { StudentTask, Task } from "../../modules/task";
-import api from "../../modules/login";
-import { StudentAnswer } from "../../modules/test";
+import axios from 'axios';
 
 const TaskResultPage:FC = () => {
     const [task, setTask] = useState<Task | null>(null);
@@ -13,7 +12,14 @@ const TaskResultPage:FC = () => {
 
     const getTask = async () => {
         try{
-            const response = await api.get(`/task/${taskID}`);
+            const response = await axios.get(
+                `http://localhost:8080/api/tasks/${taskID}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+                    }
+                }
+            );
             const taskData = response.data.task;
             setTask(taskData);
         } catch (error) {
@@ -23,7 +29,14 @@ const TaskResultPage:FC = () => {
 
     const getStudentTask = async () => {
         try {
-            const response = await api.get(`/task/${taskID}/answer`);
+            const response = await axios.get(
+                `http://localhost:8080/api/tasks/${taskID}/answer`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("auth_token")}`
+                    }
+                }
+            );
             const taskData = response.data.task;
             setStudentTask(taskData);
         } catch (error) {

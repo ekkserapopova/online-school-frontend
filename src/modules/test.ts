@@ -11,6 +11,7 @@ export interface Test {
     time_limit?: number;
     count_questions?: number;
     is_active?: boolean;
+    has_questions?: boolean;
 }
 
 export interface CompletedTests {
@@ -19,6 +20,10 @@ export interface CompletedTests {
     student_id: number;
     points: number;
     status: string;
+    created_at: string;
+    updated_at: string;
+    student_name: string;
+    student_surname: string;
 }
 
 export interface Question {

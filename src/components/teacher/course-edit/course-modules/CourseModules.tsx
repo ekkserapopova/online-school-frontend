@@ -3,6 +3,8 @@ import { Module as ModuleType } from '../../../../modules/module';
 import Module from '../one-module/Module';
 import ModuleForm from '../module-form/ModuleForm';
 import './CourseModules.css';
+import TestQuestionManager from '../test/question/AddQuestion';
+import axios from 'axios';
 
 interface CourseModulesProps {
   modules: ModuleType[];
@@ -59,6 +61,7 @@ const CourseModules: React.FC<CourseModulesProps> = ({
       
       <div className="course-modules__list">
         {modules && modules.map(module => (
+          <>
           <Module 
             key={module.id}
             module={module}
@@ -80,6 +83,8 @@ const CourseModules: React.FC<CourseModulesProps> = ({
             onAddTest={onAddTest}
             onCancelAddTest={onCancelAddTest}
           />
+
+</>
         ))}
       </div>
 

@@ -38,13 +38,15 @@ const TestQuestion: React.FC<QuizQuestionProps> = ({
           </div>
         ))}
       </div>
+      {!isLastQuestion && (
       <button
         className="record-button"
         onClick={onRecordAnswer}
         disabled={selectedAnswerIds.length === 0} // Кнопка активна, если выбран хотя бы один ответ
       >
-        {isLastQuestion ? 'Завершить тест' : 'Записать ответ'}
+        { 'Записать ответ'}
       </button>
+      )}
     </div>
   );
 };

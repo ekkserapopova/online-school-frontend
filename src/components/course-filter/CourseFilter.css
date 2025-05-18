@@ -1,7 +1,8 @@
 .course-filter{
     margin-top: -10px;
     width: 250px;
-    margin-left: 30px;
+    margin-left: 15px;
+
 }
 
     /* Фильтр цены */
@@ -36,56 +37,6 @@
         }
 
 
-    /* Фильтр по темам */
-    .course-filter__topics{
-        display: flex;
-        flex-direction: column;
-        margin-top: 5px;
-        height: 150px;
-        justify-content: space-between;
-    }
-        .course-filter__topics__label{
-            margin-left: 10px;
-            font-size: 16px;
-            display: flex;
-        }
-
-        .course-filter__topics__checkbox-text{
-            font-family: var(--font-family);
-            font-size: 17px;
-            margin-top: -6px;
-            margin-left: 3px;
-        }
-
-        .course-filter__topics input[type="checkbox"] {
-            appearance: none; 
-            width: 15px;
-            height: 15px;
-            border: 2px solid var(--accent-color);
-            border-radius: 5px;
-            position: relative;
-            cursor: pointer;
-            transition: 0.2s;
-        } 
-        
-        .course-filter__topics input[type="checkbox"]:checked {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-        
-        .course-filter__topics input[type="checkbox"]::after {
-            content: "";
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.285 6.328a1 1 0 0 0-1.41 0l-9.192 9.193-4.191-4.192a1 1 0 0 0-1.414 1.415l4.899 4.898a1 1 0 0 0 1.414 0l9.894-9.894a1 1 0 0 0 0-1.415z'/%3E%3C/svg%3E");
-            background-size: contain; 
-            background-repeat: no-repeat;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
     /* Контейнер для выпадающего списка */
     .dropdown {
         position: relative;
@@ -112,6 +63,8 @@
             text-overflow: ellipsis;  /* Добавляем многоточие если текст выходит */
             min-width: 100px;     /* Минимальная ширина для блока */
             margin-left: 5px;
+            width: 230px;
+            height: 35px; 
         }
         /* Стрелка на правой стороне */
         .dropdown__header span{

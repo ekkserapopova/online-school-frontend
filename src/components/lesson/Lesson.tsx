@@ -1,147 +1,146 @@
-// LessonPage.tsx
 import React, { useState } from 'react';
 import './Lesson.css';
+import { Material } from '../../modules/material';
 
 interface LessonProps {
-  courseTitle: string;
-  lessonTitle: string;
+  title: string;
   videoUrl: string;
   description: string;
-  materials: {
-    title: string;
-    url: string;
-  }[];
-  nextLessonTitle?: string;
+  materials: Material[];
+  isCompleted?: boolean;
 }
 
 const Lesson: React.FC<LessonProps> = ({
-  courseTitle,
-  lessonTitle,
+  title,
   videoUrl,
   description,
   materials,
-  nextLessonTitle
 }) => {
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [notes, setNotes] = useState('');
-  const [showChat, setShowChat] = useState(false);
+  const [activeTab, setActiveTab] = useState('materials');
   
-  const handleMarkAsCompleted = () => {
-    setIsCompleted(!isCompleted);
+  // Функция для скачивания материала по его ID
+  const downloadMaterial = async (materialId: number, materialTitle: string) => {
+    try {
+      const auth_token = localStorage.getItem('auth_token');
+      
+      // Уведомление о начале загрузки
+      console.log(`Начинаем загрузку материала: ${materialTitle}`);
+      
+      // Запрос на сервер для получения файла
+      const response = await fetch(`http://localhost:8080/api/materials/${materialId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+      }
+      
+      // Получаем blob из ответа
+      const blob = await response.blob();
+      
+      // Создаем временную ссылку для скачивания
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      
+      // Получаем расширение файла из Content-Type
+      const contentType = response.headers.get('Content-Type') || '';
+      let fileExtension = '.pdf'; // По умолчанию
+      
+      if (contentType.includes('pdf')) {
+        fileExtension = '.pdf';
+      } else if (contentType.includes('zip')) {
+        fileExtension = '.zip';
+      } else if (contentType.includes('msword') || contentType.includes('officedocument.wordprocessingml')) {
+        fileExtension = '.docx';
+      }
+      
+      // Задаем имя файла
+      a.download = `${materialTitle}${fileExtension}`;
+      
+      // Добавляем ссылку в DOM, кликаем по ней и удаляем
+      document.body.appendChild(a);
+      a.click();
+      
+      // Таймаут для корректного скачивания
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+      
+      console.log(`Файл "${materialTitle}${fileExtension}" успешно загружен`);
+    } catch (error) {
+      console.error('Ошибка при скачивании файла:', error);
+      alert(`Не удалось скачать файл: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}`);
+    }
   };
 
   return (
     <div className="lesson">
       <header className="lesson__header">
-        
-        <h1 className="lesson__title--large">{lessonTitle}</h1>
-        <div className="lesson__navigation">
-          <h3 className="lesson__course-title">{courseTitle}</h3>
-          <div className="lesson__progress">
-            <div className="lesson__progress-bar">
-              <div className="lesson__progress-filled"></div>
-            </div>
-            {/* <span className="lesson__progress-text">3/12 уроков пройдено</span> */}
-          </div>
-        </div>
+        <h1 className="lesson__name">{title}</h1>
       </header>
 
       <div className="lesson__content">
-        <main className="lesson__main">
-          <div className="lesson__video-container">
-            <video 
-              controls
-              poster="/video-placeholder.jpg"
-              className="lesson__video"
-            >
-              <source src={videoUrl} type="video/mp4" />
-              Ваш браузер не поддерживает видео.
-            </video>
-            
-          </div>
-
-          <div className="lesson__description">
-            <h2 className="lesson__section-title">Описание урока</h2>
-            <p className="lesson__text">{description}</p>
-          </div>
-
-          <div className="lesson__materials">
-            <h2 className="lesson__section-title">Материалы урока</h2>
-            <ul className="lesson__materials-list">
-              {materials.map((material, index) => (
-                <li key={index} className="lesson__material-item">
-                  <a href={material.url} className="lesson__material-link">
-                    {material.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </main>
+        <div className="lesson__video-container">
+          <iframe
+            width="100%"
+            height="500"
+            src={videoUrl || "https://rutube.ru/play/embed/3027afcea542e2a86b2c92ddc23bba09"}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={title}
+          ></iframe>
+        </div>
 
         <aside className="lesson__sidebar">
-          <div className="lesson__notes">
-            <h3 className="lesson__sidebar-title">Заметки</h3>
-            <textarea 
-              className="lesson__notes-area" 
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Записывайте важные моменты урока..."
-            />
+          <div className="lesson__description">
+            <h2 className="lesson__section-title">Описание урока</h2>
+            <p className="lesson__description-text">{description}</p>
           </div>
 
-          <div className="lesson__actions">
+          <div className="lesson__tabs">
             <button 
-              className={`lesson__complete-button ${isCompleted ? 'lesson__complete-button--completed' : ''}`}
-              onClick={handleMarkAsCompleted}
+              className={`lesson__tab ${activeTab === 'materials' ? 'lesson__tab--active' : ''}`}
             >
-              {isCompleted ? 'Урок пройден ✓' : 'Отметить как пройденный'}
+              Материалы
             </button>
-            
-            {/* <button 
-              className="lesson__chat-button"
-              onClick={() => setShowChat(!showChat)}
-            >
-              Задать вопрос преподавателю
-            </button> */}
           </div>
 
-          {nextLessonTitle && (
-            <div className="lesson__next">
-              <h3 className="lesson__sidebar-title">Следующий урок</h3>
-              <button className="lesson__next-button">
-                {nextLessonTitle} →
-              </button>
-            </div>
-          )}
+          <div className="lesson__tab-content">
+            {activeTab === 'materials' && (
+              <div className="lesson__materials">
+                {materials && materials.length > 0 ? (
+                  <ul className="lesson__materials-list">
+                    {materials.map((material) => (
+                      <li key={material.id} className="lesson__material-item">
+                        <a 
+                          href="#" 
+                          className="lesson__material-link"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            downloadMaterial(material.id, material.name);
+                          }}
+                        >
+                          {material?.name}
+                        </a>
+                        {/* <span className="lesson__material-type">{material.type}</span> */}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="lesson__no-content">Нет доступных материалов для этого урока</p>
+                )}
+              </div>
+            )}
+          </div>
         </aside>
       </div>
-
-      {/* {showChat && (
-        <div className="lesson__chat">
-          <div className="lesson__chat-header">
-            <h3 className="lesson__chat-title">Чат с преподавателем</h3>
-            <button 
-              className="lesson__chat-close" 
-              onClick={() => setShowChat(false)}
-            >
-              ×
-            </button>
-          </div>
-          <div className="lesson__chat-messages">
-            <div className="lesson__chat-message lesson__chat-message--system">
-              Задайте вопрос преподавателю. Среднее время ответа - 15 минут.
-            </div>
-          </div>
-          <div className="lesson__chat-input-container">
-            <input 
-              className="lesson__chat-input" 
-              placeholder="Введите сообщение..."
-            />
-            <button className="lesson__chat-send">Отправить</button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

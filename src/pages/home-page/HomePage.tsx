@@ -1,84 +1,66 @@
 import React from "react";
 import "./HomePage.css";
 import Navibar from "../../components/navbar/Navibar";
+import CourseOverview from "../../components/one-course/course-name-first-slide/CourseOwerview";
+import AboutCourse from "../../components/one-course/advantages/AboutCourse";
+import FAQ from "../../components/one-course/faq/Faq";
+import Foooter from "../../components/footer/Foooter";
+import Innovation from "../../components/innovation/Innovation";
 
 const HomePage: React.FC = () => {
+  const course = {
+    id: 1,
+    name: "Онлайн-школа по программированию",
+    description: "Изучайте программирование с нуля до профессионала",
+    image: "/images/course-image.jpg",
+    duration: "Разное время обучения",
+    format: "Онлайн",
+    level: "Начальный",
+    difficulty: 3,
+    price: 0,
+    teacherID: 1,
+    teacher: {
+      id: 1,
+      name: "Иван Иванов",
+      bio: "Опытный преподаватель программирования",
+      avatar: "/images/teacher-avatar.jpg"
+    },
+    lessons: [],
+    reviews: [],
+    tags: [],
+    modules: [],
+    tasks: [],
+    languages: []
+  };
+
+  const task_description = "Напишиите программу на языке Python, которая находит сумму чисел в списке."
+
+  const student_code = `def kotik(lst):
+  sum = 0
+  for i in len(lst):
+    sum += lst[i]
+    
+  return sum`
+
+  const llm_answer = `def kotik(lst):# Неинформативное название функции, лучше использовать calculate_sum
+  sum = 0  # 'sum' - это зарезервированное имя встроенной функции Python!
+  for i in len(lst):  # Ошибка в использовании len. Требуется использовать 
+                #'range(len(lst))'!
+    sum += lst[i]
+    
+  return sum`
+
+  const feedback='Код содержит ошибки, связанные с использованием функции `len` и цикла `for`, из-за чего оценивается не очень высоко. Рекомендации: исправить ошибки, использовать правильные методы для обхода списка (`for i in lst:`), чтобы избежать синтаксических и логических ошибок, и усовершенствовать именование переменной `sum`, так как это также имя встроенной функции. Рекомендуется также использовать более осмысленные имена переменных и функций, чтобы код был более читабельным.'
   return (
     <>
-    <Navibar/>
-    <div className="homepage">
-      <header className="header">
-        <h1>Онлайн-школа программирования</h1>
-        <p>Прокачай навыки. Кодь. Расти. Получай мгновенную обратную связь.</p>
-        <button className="cta-button">Записаться на курс</button>
-      </header>
-      <div className="content">
-        <section className="about">
-          <h2>О нас</h2>
-          <p>
-            Мы обучаем программированию с нуля и до уровня confident middle. Наши курсы
-            — это практические задания, реальные проекты и индивидуальная работа с ментором.
-          </p>
-          <p>
-            Но главное — <strong>автоматическая проверка кода с помощью нейросети</strong>. Быстрая, точная, честная. Никакого ожидания.
-          </p>
-        </section>
-
-        <section className="benefits">
-          <h2>Почему выбирают нас?</h2>
-          <ul className="benefits-list">
-            <li>
-              <img src="/icons/practice.svg" alt="Практика" />
-              <strong>Практика</strong>
-              <p>80% времени вы пишете код, решаете задачи и работаете над проектами.</p>
-            </li>
-            <li>
-              <img src="/icons/mentor.svg" alt="Менторы" />
-              <strong>Менторы</strong>
-              <p>Опытные разработчики помогут вам на каждом этапе обучения.</p>
-            </li>
-            <li>
-              <img src="/icons/ai.svg" alt="Искусственный интеллект" />
-              <strong>Искусственный интеллект</strong>
-              <p>Мгновенная проверка кода и рекомендации от нейросети.</p>
-            </li>
-          </ul>
-        </section>
-
-        <section className="reviews">
-          <h2>Отзывы наших студентов</h2>
-          <ul className="reviews-list">
-            <li>
-              <p>“Курсы помогли мне получить первую работу в IT. Автоматическая проверка — это просто находка!”</p>
-              <strong>— Анна, Junior Developer</strong>
-            </li>
-            <li>
-              <p>“Очень понравился подход к обучению. Менторы всегда на связи, а задания интересные.”</p>
-              <strong>— Иван, Frontend Developer</strong>
-            </li>
-          </ul>
-        </section>
-
-        <section className="faq">
-          <h2>FAQ</h2>
-          <ul>
-            <li>
-              <strong>Нужны ли базовые знания?</strong>
-              <p>Нет, мы обучаем с нуля.</p>
-            </li>
-            <li>
-              <strong>Как быстро проверяется код?</strong>
-              <p>Мгновенно. Проверка запускается сразу после отправки задания.</p>
-            </li>
-            <li>
-              <strong>Кто проверяет код?</strong>
-              <p>Наша система на основе нейросети (LLM), обученная на реальных примерах.</p>
-            </li>
-          </ul>
-        </section>
-      </div>
-    </div>
-    </>
+            <Navibar />
+            <CourseOverview course={course}  isEnrolled={true} type='home'/>
+            
+            <AboutCourse />
+            <Innovation student_code={student_code} answer_by_llm={llm_answer} task_description={task_description} feedback={feedback} />
+            <FAQ  />
+            <Foooter/>
+        </>
   );
 };
 

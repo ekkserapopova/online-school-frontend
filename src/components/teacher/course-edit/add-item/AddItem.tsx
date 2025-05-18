@@ -4,6 +4,7 @@ import './AddItem.css';
 import { Lesson } from '../../../../modules/lesson';
 import { Task } from '../../../../modules/task';
 import { Test } from '../../../../modules/test';
+import axios from 'axios';
 
 type ItemType = 'lesson' | 'task' | 'test';
 
@@ -46,17 +47,23 @@ const AddItem: React.FC<AddItemProps> = ({ type, moduleID, onCancel, onAddItem }
 
 
     if (isLesson) {
+        const startDate = new Date(start);
+        startDate.setHours(startDate.getHours() + 3);
+        const endDate = new Date(end);
+        endDate.setHours(endDate.getHours() + 3);
         payload = {
           name,
           description,
-          start: start,
-          end: end
+          start: startDate.toISOString(),
+          end: endDate.toISOString(),
+          is_active: false
         } satisfies Omit<Lesson, 'id'>;
       } else if (isTask) {
         payload = {
           name,
           description,
-          deadline: end ? `${end}T23:59:59Z` : '', // Add time component and UTC timezone indicator
+          deadline: end ? `${end}T23:59:59Z` : '',
+          is_active: false
         } satisfies Omit<Task, 'id'>;
       } else {
         payload = {
@@ -70,7 +77,15 @@ const AddItem: React.FC<AddItemProps> = ({ type, moduleID, onCancel, onAddItem }
 
 
     try {
-      await api.post(`module/${moduleID}/${type}`, payload);
+      await axios.post(
+        `http://localhost:8080/api/module/${moduleID}/${type}`,
+        payload,
+        {
+          headers: {
+        Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+          },
+        }
+      );
       onAddItem(moduleID, payload);
       setName('');
       setDescription('');

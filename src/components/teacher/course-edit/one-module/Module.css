@@ -1,0 +1,10 @@
+.module--highlight {
+    animation: highlight-fade 1s ease-out;
+  }
+
+  .module__edit-button{
+    border: none !important;
+    background: none !important;
+  }
+
+ 

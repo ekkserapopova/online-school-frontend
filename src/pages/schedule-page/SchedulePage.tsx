@@ -11,19 +11,21 @@ import { loginUser } from '../../store/slices/authSlice';
 import ArchiveTable from '../../components/schedule/archive-table/ArchiveTable';
 import MyCourses from '../../components/schedule/my-courses/MyCourses';
 import { OneCourse } from '../../modules/courses';
+import axios from 'axios';
 
 const CalendarPage: React.FC = () => {
-    const [futureLessons, setFutureLessons] = useState<LessonWithCourse[]>([]); 
-    const [pastLessons, setPastLessons] = useState<LessonWithCourse[]>([]); 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [activeBtn, setActiveBtn] = useState('mycourses');
     const [myCourses, setMyCourses] = useState<OneCourse[]>([]); 
+    const [lessons, setLessons] = useState<LessonWithCourse[]>([]);
+
     
     const userId = useSelector((state: RootState) => state.auth.user_id);
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
 
     const navigate = useNavigate(); 
     const dispatch = useDispatch();
+    
     
     useEffect(() => {
         if (userId) {
@@ -34,18 +36,26 @@ const CalendarPage: React.FC = () => {
     const getLessons = async () => {
         setIsLoading(true);
         try {
-            const responsePast = await api.get(`/lessons`, {params: {period: 'past'}});
-            const responseFuture = await api.get(`/lessons`, {params: {period: 'future'}});
-            const mycourses = await api.get(`/courses/user`);
+            const token = localStorage.getItem('auth_token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                params: {} as any,
+            };
+            const responseLessons = await axios.get(
+                `http://localhost:8080/api/lessons`,
+                config
+            );
+            const mycourses = await axios.get(
+                `http://localhost:8080/api/courses/user`,
+                config
+            );
             console.log('Мои курсы:', mycourses.data.courses);
             const enrolledCourses = mycourses.data.courses;
             setMyCourses(enrolledCourses);
-            const pastLessonsData = responsePast.data.lessons;
-            const futureLessonsData = responseFuture.data.lessons;
-            setPastLessons(pastLessonsData);
-            setFutureLessons(futureLessonsData);
-            console.log('Расписание уроков:', futureLessonsData);
-            console.log('Архив уроков:', pastLessonsData);
+            const lessonsData = responseLessons.data.lessons;
+            setLessons(lessonsData);
         } catch (error:any) {
             if (error.response && error.response.status === 401){
                 console.log('Ошибка 401: Не авторизован');
@@ -77,12 +87,12 @@ const CalendarPage: React.FC = () => {
                 is_authenticated ? (
                     <div className="schedule-page">
                         <div className="schedule__handler">
-                            <div 
+                            {/* <div 
                                 className={`schedule__btn--schedule ${activeBtn === 'schedule' ? 'schedule__btn--schedule--active' : ''}`} 
                                 onClick={() => setActiveBtn('schedule')}
                             >
                                 Расписание
-                            </div>
+                            </div> */}
                             <div 
                                 className={`schedule__btn--courses ${activeBtn === 'mycourses' ? 'schedule__btn--courses--active' : ''}`} 
                                 onClick={() => setActiveBtn('mycourses')}
@@ -93,11 +103,11 @@ const CalendarPage: React.FC = () => {
                                 className={`schedule__btn--archive ${activeBtn === 'archive' ? 'schedule__btn--archive--active' : ''}`} 
                                 onClick={() => setActiveBtn('archive')}
                             >
-                                Архив
+                                Уроки
                             </div>
                         </div>
                         
-                        {activeBtn === 'schedule' && (
+                        {/* {activeBtn === 'schedule' && (
                             <div className="schedule__schedule">
                                 <div className="schedule__lessons">
                                 {futureLessons && futureLessons.length > 0 ?
@@ -111,12 +121,12 @@ const CalendarPage: React.FC = () => {
                                 
                                 </div>
                             </div>
-                        )}
+                        )} */}
                         
                         {/* Архив уроков */}
                         {activeBtn === 'archive' && (
                             <div className="schedule__archive">
-                                <ArchiveTable lessons={pastLessons} />
+                                <ArchiveTable lessons={lessons} />
                             </div>
                         )}
 

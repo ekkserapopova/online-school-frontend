@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../modules/login';
+import axios from 'axios';
 
 // Интерфейс урока
 export interface Lesson {
@@ -39,8 +40,12 @@ export const fetchLessons = createAsyncThunk(
     'lessons/fetchLessons',
     async ({ month, year, userId }: { month: number; year: number; userId: number }, { rejectWithValue }) => {
         try {
-            const response = await api.get(`/lessons/${userId}`, {
-                params: { month, year }
+            const authToken = localStorage.getItem('auth_token');
+            const response = await axios.get(`http://localhost:8080/api/lessons/${userId}`, {
+                params: { month, year },
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
             });
             return {
                 lessons: response.data.lessons,

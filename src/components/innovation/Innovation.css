@@ -1,0 +1,132 @@
+.innovation {
+    width: 100%;
+    padding: 50px 30px;
+    background-color: var(--accent-color);
+    font-family: var(--font-family);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  
+  .innovation__name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--light-text-color);
+    position: relative;
+  }
+  
+  .innovation__codes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+.innovation__task-description {
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    align-content: center;
+    background-color: var(--accent-color);
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--light-text-color);
+    border-radius: 12px;
+    box-shadow: 0 15px 15px rgba(46, 1, 1, 0.262);
+    /* border-left: 4px solid #bdc9d7; */
+    width: 100%; /* Занимать полную доступную ширину */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+  .innovation__code-container {
+    margin-bottom: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 15px rgba(46, 1, 1, 0.262);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    width: 50%; /* Занимать полную доступную ширину */
+  }
+  
+  .innovation__code-name {
+    padding: 16px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    /* background-color: var(--milk-color); */
+    color: var(--dark-text-color);
+    display: flex;
+    align-items: center;
+  }
+  
+  .innovation__code {
+    border-top: 1px solid #eaeaea;
+    width: 100%; /* Полная ширина для контейнера кода */
+  }
+
+.innovation__codes {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .innovation__code-container:first-child {
+    flex: 3; /* Код ученика будет уже */
+  }
+  
+  .innovation__code-container:last-child {
+    flex: 6; /* Полученный ответ будет шире */
+  }
+
+  .innovation__feedback {
+    padding: 16px 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border-left: 4px solid #4fd1c5;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .innovation__feedback:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .innovation__feedback-icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #4fd1c5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+    color: white;
+  }
+  
+  .innovation__feedback-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--light-text-color);
+    flex-grow: 1;
+    font-weight: 500;
+  }
+  
+  

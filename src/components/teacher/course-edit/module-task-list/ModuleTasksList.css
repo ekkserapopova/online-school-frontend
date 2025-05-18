@@ -1,0 +1,47 @@
+/* Add or update these styles */
+
+.module__list-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .module__task-name {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .module__task-controls {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .module__buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .module__task-link-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .module__task-link {
+    color: #4a6da7;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    margin-top: 5px;
+  }
+  
+  .module__task-link:hover {
+    color: #385080;
+    text-decoration: underline;
+  }
+
+  .module__all-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }

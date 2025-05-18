@@ -1,412 +1,296 @@
-
 .lesson {
-    display: flex;
-    flex-direction: column;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Заголовок урока */
-  .lesson__header {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .lesson__navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-  
-  .lesson__course-title {
-    color: var(--accent-color-light);
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  
-  .lesson__progress {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .lesson__progress-bar {
-    width: 150px;
-    height: 6px;
-    background-color: var(--background-color-darker);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  
-  .lesson__progress-filled {
-    width: 25%;
-    height: 100%;
-    background-color: var(--accent-color);
-    border-radius: 3px;
-  }
-  
-  .lesson__progress-text {
-    font-size: 0.9rem;
-    color: var(--accent-color-light);
-  }
-  
-  .lesson__title--large {
-    font-size: 2.5rem;
-    color: var(--dark-text-color);
-    margin-top: 0.5rem;
-    font-weight: 600;
-  }
-  
-  /* Основное содержимое урока */
+  max-width: 1600px;
+  margin: 20px auto;
+  padding: 2rem;
+  font-family: var(--font-family);
+  color: var(--dark-text-color);
+
+}
+
+/* Заголовок и верхние действия */
+.lesson__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lesson__name {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--dark-text-color);
+  flex: 1;
+}
+
+.lesson__actions-top {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Основная структура контента: видео слева, описание справа */
+.lesson__content {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Контейнер видео */
+.lesson__video-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #000;
+}
+
+.lesson__video-container iframe {
+  display: block;
+  aspect-ratio: 16/9;
+}
+
+/* Боковая панель (справа) */
+.lesson__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+}
+
+/* Описание урока */
+.lesson__description {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.108);
+}
+
+.lesson__section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--dark-text-color);
+}
+
+.lesson__description-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--dark-text-color);
+  margin-bottom: 1rem;
+}
+
+.lesson__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Вкладки и их содержимое */
+.lesson__tabs {
+  display: flex;
+  border-bottom: 2px solid var(--accent-color-hover);
+  margin-bottom: 1rem;
+}
+
+.lesson__tab {
+  padding: 0.8rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  transition: all 0.2s ease;
+  position: relative;
+  cursor:auto !important;
+}
+
+.lesson__tab--active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.lesson__tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.lesson__tab-content {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.108);
+  min-height: 200px;
+}
+
+/* Материалы урока */
+.lesson__materials-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lesson__material-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson__material-item:last-child {
+  border-bottom: none;
+}
+
+.lesson__material-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.lesson__material-link:hover {
+  color: var(--accent-color-hover);
+  text-decoration: underline;
+}
+
+.lesson__material-type {
+  font-size: 0.8rem;
+  color: var(--secondary-text-color);
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+}
+
+/* Заметки */
+.lesson__notes-textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.lesson__no-content {
+  color: var(--secondary-text-color);
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+
+/* Адаптивность для планшетов и мобильных */
+@media (max-width: 992px) {
   .lesson__content {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 2rem;
+    grid-template-columns: 1fr;
   }
   
-  /* Основная колонка с видео и текстом */
-  .lesson__main {
-    display: flex;
+  .lesson__header {
     flex-direction: column;
-    gap: 2rem;
+    align-items: flex-start;
   }
   
-  /* Контейнер видео */
-  .lesson__video-container {
-    position: relative;
+  .lesson__actions-top {
     width: 100%;
-    background-color: var(--card-color);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-  
-  .lesson__video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    background-color: #000;
-  }
-  
-  .lesson__video-controls {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .lesson {
     padding: 1rem;
-    background-color: var(--card-color);
   }
   
-  .lesson__control-button {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background-color 0.2s;
-  }
-  
-  .lesson__control-button:hover {
-    background-color: var(--accent-color-hover);
-  }
-  
-  .lesson__playback-controls {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .lesson__speed-button,
-  .lesson__quality-button {
-    background-color: var(--background-color);
-    border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    transition: background-color 0.2s;
-  }
-  
-  .lesson__speed-button:hover,
-  .lesson__quality-button:hover {
-    background-color: var(--background-color-darker);
-  }
-  
-  /* Описание урока */
-  .lesson__description,
-  .lesson__materials {
-    background-color: var(--card-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-  
-  .lesson__section-title {
+  .lesson__title {
     font-size: 1.5rem;
-    color: var(--dark-text-color);
-    margin-bottom: 1rem;
-    font-weight: 500;
   }
   
-  .lesson__text {
-    line-height: 1.8;
-    color: var(--text-color);
-  }
-  
-  /* Список материалов */
-  .lesson__materials-list {
-    list-style-type: none;
-  }
-  
-  .lesson__material-item {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .lesson__material-item:last-child {
-    border-bottom: none;
-  }
-  
-  .lesson__material-link {
-    color: var(--accent-color);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-  }
-  
-  .lesson__material-link:hover {
-    color: var(--accent-color-hover);
-  }
-  
-  .lesson__material-link::before {
-    content: "•";
-    color: var(--accent-color);
-  }
-  
-  /* Боковая панель */
-  .lesson__sidebar {
-    display: flex;
+  .lesson__actions-top {
     flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .lesson__sidebar > div {
-    background-color: var(--card-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-  
-  .lesson__sidebar-title {
-    font-size: 1.2rem;
-    color: var(--dark-text-color);
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-  
-  /* Заметки */
-  .lesson__notes-area {
     width: 100%;
-    height: 200px;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    resize: none;
-    font-family: var(--font-family);
-    font-size: 0.95rem;
-    color: var(--text-color);
   }
   
-  .lesson__notes-area::placeholder {
-    color: var(--placeholder-color);
-  }
-  
-  /* Действия */
-  .lesson__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .lesson__complete-button {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    border: none;
-    border-radius: 4px;
-    padding: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
-  }
-  
-  .lesson__complete-button:hover {
-    background-color: var(--accent-color-hover);
-  }
-  
-  .lesson__complete-button--completed {
-    background-color: var(--accent-color-lighter);
-  }
-  
-  .lesson__chat-button {
-    background-color: var(--background-color);
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    padding: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .lesson__chat-button:hover {
-    background-color: var(--accent-color-transparent);
-  }
-  
-  /* Следующий урок */
-  .lesson__next-button {
-    background-color: var(--accent-color-light);
-    color: var(--light-text-color);
-    border: none;
-    border-radius: 4px;
-    padding: 12px;
-    cursor: pointer;
-    font-weight: 500;
+  .lesson__button {
     width: 100%;
-    text-align: center;
-    transition: background-color 0.2s;
+    justify-content: center;
   }
   
-  .lesson__next-button:hover {
-    background-color: var(--accent-color-hover);
-  }
-  
-  /* Чат */
-  .lesson__chat {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 350px;
-    height: 450px;
-    background-color: var(--card-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
-  }
-  
-  .lesson__chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-  }
-  
-  .lesson__chat-title {
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-  
-  .lesson__chat-close {
-    background: none;
-    border: none;
-    color: var(--light-text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-    line-height: 1;
-  }
-  
-  .lesson__chat-messages {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-  }
-  
-  .lesson__chat-message {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 80%;
-  }
-  
-  .lesson__chat-message--system {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    max-width: 100%;
+  .lesson__tab {
+    padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
-  
-  .lesson__chat-input-container {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid var(--border-color);
+}
+
+
+.lesson__material-link {
+  color: var(--accent-color) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lesson__material-link:hover {
+  color: var(--accent-color-hover);
+}
+
+.lesson__material-link::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235e81ac'%3E%3Cpath d='M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.lesson__material-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.lesson__material-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Индикатор загрузки */
+.lesson__material-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  border: 2px solid rgba(94, 129, 172, 0.2);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  .lesson__chat-input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: var(--font-family);
-  }
-  
-  .lesson__chat-send {
-    background-color: var(--accent-color);
-    color: var(--light-text-color);
-    border: none;
-    border-radius: 4px;
-    padding: 0 15px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .lesson__chat-send:hover {
-    background-color: var(--accent-color-hover);
-  }
-  
-  /* Адаптивная верстка */
-  @media (max-width: 1024px) {
-    .lesson__content {
-      grid-template-columns: 1fr;
-    }
-    
-    .lesson__sidebar {
-      order: -1;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .lesson__title {
-      font-size: 2rem;
-    }
-    
-    .lesson__navigation {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-    
-    .lesson__chat {
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      right: 0;
-      border-radius: 0;
-    }
-  }
+}

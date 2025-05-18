@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from "react";
 import CodeEditor from "../../components/code-editor/CodeEditor";
 import Navibar from "../../components/navbar/Navibar";
 import { StudentTask, Task } from "../../modules/task";
-import api from "../../modules/login";
 import TaskAttemptsList from "../../components/task-attempts/TaskAttemptsList";
 import AssignmentViewer from "../../components/task-result/TaskResult";
 import "./CodePage.css";
+import axios from 'axios';
 
 const CodePage: FC = () => {
     const [task, setTask] = useState<Task | null>(null);
@@ -21,7 +21,14 @@ const CodePage: FC = () => {
 
     const getTask = async () => {
         try {
-            const response = await api.get(`/task/${taskID}`);
+            const response = await axios.get(
+                `http://localhost:8080/api/tasks/${taskID}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const taskData = response.data.task;
             setTask(taskData);
             
@@ -38,7 +45,14 @@ const CodePage: FC = () => {
 
     const getTaskAttempts = async () => {
         try {
-            const response = await api.get(`/task/${taskID}/answers`);
+            const response = await axios.get(
+                `http://localhost:8080/api/tasks/${taskID}/answers`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const attemptsData = response.data.tasks;
             
             setAttempts(attemptsData || []);
@@ -61,9 +75,15 @@ const CodePage: FC = () => {
     const addStudentTask = async () => {
         try {
             setLoading(true);
-            const response = await api.post(`/task/${taskID}/answer`, {
-                code: code,
-            });
+            const response = await axios.post(
+                `http://localhost:8080/api/tasks/${taskID}/answer`,
+                { code: code },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             console.log("Ответ успешно отправлен:", response.data.student_task);
             
             // Обновляем список попыток после отправки
@@ -79,7 +99,14 @@ const CodePage: FC = () => {
 
     const getFinalScore = async(taskId: number) => {
         try {
-            const response = await api.get(`/task/${taskId}/score`);
+            const response = await axios.get(
+                `http://localhost:8080/api/tasks/${taskId}/score`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                    }
+                }
+            );
             const finalScoreData = Math.round(response.data.score * 100) / 100;
             console.log("Итоговая оценка:", finalScoreData);
             setFinalScore(finalScoreData);
@@ -97,7 +124,14 @@ const CodePage: FC = () => {
         
         const checkStatus = async () => {
             try {
-                const response = await api.get(`/task/${taskId}/answer`);
+                const response = await axios.get(
+                    `http://localhost:8080/api/tasks/${taskId}/answer`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('auth_token')}`
+                        }
+                    }
+                );
                 const taskData = response.data.task;
                 
                 // Проверяем изменился ли статус задачи

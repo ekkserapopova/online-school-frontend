@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from '../../components/test/progress-bar/ProgressBar';
 import TestTabs from '../../components/test/tabs/TestTabs';
-import QuizQuestion from '../../components/test/question/TestQuestion';
+import TestQuestion from '../../components/test/question/TestQuestion';
 import './TestPage.css';
 import Navibar from '../../components/navbar/Navibar';
-import api from '../../modules/login';
 import { Question, Test } from '../../modules/test';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // Компонент таймера
 const Timer: React.FC<{ initialTime: number; onTimeEnd: () => void }> = ({ initialTime, onTimeEnd }) => {
@@ -75,7 +75,7 @@ const TestPage: React.FC = () => {
   const [showResultsModal, setShowResultsModal] = useState(false);
   
   // Состояние для таймера (время в секундах)
-  const [testTime, setTestTime] = useState<number>(10); // По умолчанию 30 минут
+  const [testTime, setTestTime] = useState<number>(10); 
   
   const testID = Number(window.location.pathname.split('/').pop());
   
@@ -92,13 +92,21 @@ const TestPage: React.FC = () => {
     try {
       setLoading(true);
       console.log('Загрузка теста...');
-      const response = await api.get(`/courses/1/test/${testID}`);
+      const response = await axios.get(
+        `http://localhost:8080/api/courses/1/test/${testID}`,
+        {
+          headers: {
+        Authorization: `Bearer ${localStorage.getItem('auth_token') || ''}`
+          }
+        }
+      );
       const testData = response.data.test;
       setTest(testData);
       
       // Устанавливаем время теста, если оно указано в данных с сервера
       if (testData.time_limit && typeof testData.time_limit === 'number') {
-        setTestTime(testData.time_limit * 60); // Предполагаем, что время с сервера приходит в минутах
+        setTestTime(testData.time_limit * 60); 
+        // setTestTime(1);
       }
       
       // Проверяем, что questions существует и это массив
@@ -119,11 +127,16 @@ const TestPage: React.FC = () => {
   const postAnswers = async (questionId: number, answerIds: number[]) => {
     try {
       const data = JSON.stringify({ selected_answer_ids: answerIds });
-      const response = await api.post(`/question/${questionId}`, data, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        `http://localhost:8080/api/question/${questionId}`,
+        data,
+        {
+          headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('auth_token') || ''}`
+          }
         }
-      });
+      );
       console.log('Ответы успешно отправлены:', response.data);
       return true;
     } catch (error) {
@@ -136,7 +149,26 @@ const TestPage: React.FC = () => {
   // Функция для получения результатов теста
   const getTestResults = async () => {
     try {
-      const response = await api.get(`/test/${test?.id}/result`);
+      const currentQuestionId = questionsData[currentQuestionIndex]?.id;
+      const selectedAnswerIds = userAnswers[currentQuestionIndex] || [];
+      if (currentQuestionId && selectedAnswerIds.length > 0) {
+        // Отправляем ответы на сервер
+        const success = await postAnswers(currentQuestionId, selectedAnswerIds);
+        
+        // Переходим к следующему вопросу, если отправка успешна
+        if (success && currentQuestionIndex < questionsData.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        }
+      } 
+      // postAnswers()
+      const response = await axios.get(
+        `http://localhost:8080/api/tests/${test?.id}/result`,
+        {
+          headers: {
+        Authorization: `Bearer ${localStorage.getItem('auth_token') || ''}`
+          }
+        }
+      );
       // Получаем массив баллов
       const points = response.data.points;
       console.log('Баллы за тест:', points);
@@ -187,6 +219,8 @@ const TestPage: React.FC = () => {
   const handleSkipQuestion = () => {
     if (currentQuestionIndex < questionsData.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      postAnswers(questionsData[currentQuestionIndex].id, userAnswers[currentQuestionIndex]);
+
     }
   };
   
@@ -194,8 +228,16 @@ const TestPage: React.FC = () => {
   const handleFinishTest = async () => {
     try {
       setLoading(true); // Включаем индикатор загрузки
-
-      const res = await api.put(`/test/${test?.id}/finish`)
+      // await postAnswers(questionsData[currentQuestionIndex].id, userAnswers[currentQuestionIndex]);
+      await axios.put(
+        `http://localhost:8080/api/tests/${test?.id}/finish`,
+        {},
+        {
+          headers: {
+        Authorization: `Bearer ${localStorage.getItem('auth_token') || ''}`
+          }
+        }
+      );
       console.log('Тест завершен');
       
       const points = await getTestResults();
@@ -227,6 +269,7 @@ const TestPage: React.FC = () => {
   const handleTimeEnd = () => {
     // Показываем модальное окно с уведомлением
     alert('Время вышло! Тест будет автоматически завершен.');
+    postAnswers(questionsData[currentQuestionIndex].id, userAnswers[currentQuestionIndex]);
     // Завершаем тест
     handleFinishTest();
   };
@@ -255,27 +298,6 @@ const TestPage: React.FC = () => {
         answerIds: []
       };
     }
-  };
-
-  // Функция для получения массива выбранных текстов ответов
-  const getSelectedAnswerTexts = () => {
-    const currentAnswers = userAnswers[currentQuestionIndex] || [];
-    if (currentAnswers.length === 0) return [];
-    
-    const answers = Array.isArray(currentQuestion.answers) ? currentQuestion.answers : [];
-    return currentAnswers
-      .map(id => {
-        const answer = answers.find(a => a?.id === id);
-        return answer?.text || '';
-      })
-      .filter(text => text !== ''); // Отфильтровываем пустые тексты
-  };
-  
-  // Функция для нахождения ID ответа по тексту
-  const findAnswerIdByText = (text: string) => {
-    const answers = Array.isArray(currentQuestion.answers) ? currentQuestion.answers : [];
-    const answer = answers.find(a => a?.text === text);
-    return answer?.id;
   };
 
   // Отображение загрузки
@@ -327,7 +349,7 @@ const TestPage: React.FC = () => {
           answeredQuestions={userAnswers.map(answers => answers && answers.length > 0)} 
         />
         
-        <QuizQuestion 
+        <TestQuestion 
           question={adaptedQuestion}
           selectedAnswerIds={userAnswers[currentQuestionIndex] || []} // Передаем непосредственно массив ID
           onSelectAnswer={(answerId) => {
@@ -361,12 +383,12 @@ const TestPage: React.FC = () => {
               <h3>Завершить тест?</h3>
               <p>Вы ответили на {progress} из {questionsData.length} вопросов.</p>
               <div className="modal-buttons">
-                <button 
+                {/* <button 
                   className="cancel-button"
                   onClick={() => setShowFinishModal(false)}
                 >
                   Отмена
-                </button>
+                </button> */}
                 <button 
                   className="confirm-button"
                   onClick={handleFinishTest}

@@ -7,6 +7,7 @@ import { loginUser } from "../../store/slices/authSlice";
 import { UserPayload } from "../login-page/LoginPage";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from 'axios';
 
 export function convertDateFormat(dateStr: string): string {
     // Парсим строку даты в объект Date
@@ -34,17 +35,24 @@ const SignupPage:FC = () =>{
     const signUp = async() =>{
         try{
             const birthDate = convertDateFormat(valueBirth)
-            const response = await api.post("/signup",
+            const tokenAuth = localStorage.getItem('auth_token');
+            const response = await axios.post(
+                "http://localhost:8080/api/signup",
                 {
                     name: valueName,
                     surname: valueSurname,
                     birth: birthDate,
-                    email:valueEmail,
+                    email: valueEmail,
                     phone: valuePhone,
                     password: valuePassword,
                     role: valueRole
+                },
+                {
+                    headers: {
+                        Authorization: tokenAuth ? `Bearer ${tokenAuth}` : undefined
+                    }
                 }
-            )
+            );
             const userData = response.data;
                         
                         
@@ -62,7 +70,7 @@ const SignupPage:FC = () =>{
             dispatch(loginUser(
                 {user_id: userId,
                 is_authenticated: true,
-                is_teacher: false}
+                is_teacher: false,}
             ))
 
 

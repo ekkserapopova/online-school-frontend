@@ -1,0 +1,72 @@
+/* Общие стили для кнопок действий (сохранить/отмена) */
+.action-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  /* Кнопка Сохранить/Подтвердить/Добавить (зеленая) */
+  .action-button--primary {
+    background-color: #4CAF50 !important;
+    color: white !important;
+  }
+  
+  .action-button--primary:hover {
+    background-color: #3d9140 !important;
+  }
+  
+  .action-button--primary:active {
+    transform: translateY(1px) !important;
+  }
+  
+  .action-button--primary:disabled {
+    background-color: #a0d4a3;
+    cursor: not-allowed;
+  }
+  
+  /* Кнопка Отмена (серая) */
+  .action-button--cancel {
+    background-color: #f0f0f0 !important;
+    color: #333    !important;
+  }
+  
+  .action-button--cancel:hover {
+    background-color: #e0e0e0 !important;
+  }
+  
+  .action-button--cancel:active {
+    transform: translateY(1px);
+  }
+  
+  /* Кнопка Удалить/Опасное действие (красная) */
+  .action-button--danger {
+    background-color: #f7a09a;
+    color: red;
+  }
+  
+  .action-button--danger:hover {
+    background-color: #d32f2f;
+  }
+  
+  .action-button--danger:active {
+    transform: translateY(1px);
+  }
+  
+  /* Обновленные стили для форм */
+  .question-form-controls,
+  .question-edit-controls,
+  .answer-edit-actions,
+  .module-materials__edit-actions,
+  .module-materials__form-actions,
+  .edit-item__actions,
+  .add-item__actions,
+  .image-modal__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }

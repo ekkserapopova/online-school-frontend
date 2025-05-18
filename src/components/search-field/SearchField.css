@@ -2,9 +2,12 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 300px;
+  width: 230px;
   height: 35px; 
+  max-width: 300px;
+  margin-left: 20px;
+  margin-top: 10px;
+  
 }
 
 .search-field input {

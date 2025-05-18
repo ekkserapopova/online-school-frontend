@@ -1,11 +1,32 @@
 .courses-page-container{
     display: flex;
     margin: 30px auto;
+    gap: 40px;
 
 }
 
 .courses{
     display: flex;
     flex-direction: column;
-    /* margin-top: 20px; */
+    /* mar
+    
+    .gin-top: 20px; */
+}
+.courses-page__filters{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 10px;
+}
+
+.no-courses-found {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+    color: #6c757d;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }

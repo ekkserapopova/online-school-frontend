@@ -4,6 +4,11 @@ import "./SideMenu.css";
 
 
 const SideMenu: FC = () => {
+  const logOut = () => {
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("user_id");
+    window.location.href = "/login";
+  };
   return (
     <>
       
@@ -22,9 +27,9 @@ const SideMenu: FC = () => {
               </Link>
             </li>
             <li>
-              <Link to="/logout" className="menu-item">
+              <div className="menu-item" onClick={logOut}>
                 <span>Выход</span>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>

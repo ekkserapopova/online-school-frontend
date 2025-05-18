@@ -30,7 +30,7 @@ export interface OneCourse {
     description: string,
     difficulty: number,
     price: number,
-    teacherID: number,
+    teacher_id: number,
     image: string
     teacher: User
     modules: Module[]

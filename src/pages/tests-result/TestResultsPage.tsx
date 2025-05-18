@@ -4,6 +4,7 @@ import { AnswerVariant, Question, Test } from '../../modules/test';
 import api from '../../modules/login';
 import { set } from 'date-fns';
 import Navibar from '../../components/navbar/Navibar';
+import axios from 'axios';
 
 // Актуальная структура ответа студента
 interface StudentAnswer {
@@ -48,7 +49,15 @@ const TestResultsPage = () => {
     try {
       setLoading(true);
       console.log('Загрузка теста...');
-      const response = await api.get(`/courses/1/test/${testID}`);
+      const authToken = localStorage.getItem('auth_token');
+      const response = await axios.get(
+        `http://localhost:8080/api/courses/1/test/${testID}`,
+        {
+          headers: {
+        Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       const testData = response.data.test;
       setTestData(testData);
       
@@ -74,7 +83,15 @@ const TestResultsPage = () => {
 
   const getRightAnswers = async() => {
     try {
-      const response = await api.get(`/test/${testID}/rightAnswers`);
+      const authToken = localStorage.getItem('auth_token');
+      const response = await axios.get(
+        `http://localhost:8080/api/tests/${testID}/rightAnswers`,
+        {
+          headers: {
+        Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       const answersData = response.data.right_answers;
       console.log('Правильные ответы:', answersData);
       setRightAnswers(answersData || []);
@@ -85,7 +102,15 @@ const TestResultsPage = () => {
 
   const getStudentAnswers = async() => {
     try {
-      const response = await api.get(`/test/${testID}/studentAnswers`);
+      const authToken = localStorage.getItem('auth_token');
+      const response = await axios.get(
+        `http://localhost:8080/api/tests/${testID}/studentAnswers`,
+        {
+          headers: {
+        Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       console.log('Ответ API студента:', response.data);
       
       // Сохраняем все данные о результатах студента
@@ -98,7 +123,15 @@ const TestResultsPage = () => {
 
   const getCopletedTest = async() => {
     try {
-      const response = await api.get(`/test/${testID}/finish`);
+      const authToken = localStorage.getItem('auth_token');
+      const response = await axios.get(
+        `http://localhost:8080/api/tests/${testID}/finish`,
+        {
+          headers: {
+        Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
       const comletedTestData = response.data.completed_test;
       setCompletedTest(comletedTestData || null);
       console.log('Данные о завершенном тесте:', comletedTestData);
@@ -269,9 +302,6 @@ const TestResultsPage = () => {
       
       <div className="total-score-card">
         Итоговый результат: {completedTest?.points} из {maxScore} баллов 
-        <span className="score-percent">
-          {maxScore > 0 ? Math.round(((studentAnswersData?.total_score || totalScore) / maxScore) * 100) : 0}%
-        </span>
       </div>
     </div>
     </>

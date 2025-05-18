@@ -169,3 +169,7 @@
   .editor__send-button:active {
     background-color: #2D79C3;
   }
+
+  .editor__send-button:hover{
+    background-color: var(--accent-color-hover) !important;
+  }

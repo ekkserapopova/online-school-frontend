@@ -102,16 +102,36 @@
     }
 
   /* Имя пользователя */
-  .navibar__profile {
-    position: relative;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+  /* Стили для аватара с инициалами */
+    .navbar__profile__avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--background-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 14px;
+      margin-right: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Обновим стиль для контейнера профиля */
+    .navibar__profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      padding: 8px 12px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navibar__profile:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
     .navibar__profile div{
       text-decoration: none;
@@ -171,5 +191,14 @@
       background-color: #fff; 
       color: var(--accent-color-hover); 
     }
+
+    .navibar__logo-menu__link{
+      text-decoration: none;
+      display: flex;
+      transition: color 0.3s ease;
+    }
   
-  
+/* Активный пункт меню */
+.navibar__menu div.active::after {
+  width: 100%; /* Подчеркивание для активного пункта */
+}

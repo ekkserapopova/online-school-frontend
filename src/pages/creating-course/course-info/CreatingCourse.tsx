@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { X, Plus, Check } from 'lucide-react';
 import './CreatingCourse.css';
 import { Language } from '../../../modules/languages';
-import api from '../../../modules/login';
+import axios from 'axios';
+import Navibar from '../../../components/navbar/Navibar';
 
 
-// Интерфейс для создания нового курса (без ID и связанных сущностей)
 interface CourseCreate {
   name: string;
   description: string;
@@ -28,7 +28,12 @@ export default function CourseCreationPage() {
 
   const getLanguages = async () => {
     try {
-        const response = await api.get('/languages');
+        const authToken = localStorage.getItem('auth_token');
+        const response = await axios.get('http://localhost:8080/api/languages', {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
         const languagesData = response.data.languages;
         setAvailableLanguages(languagesData || []);
         console.log("Доступные языки:", languagesData);
@@ -100,7 +105,16 @@ export default function CourseCreationPage() {
 
   const createCourse = async () => {
     try{
-        const response = await api.post('/course', courseData);
+        const authToken = localStorage.getItem('auth_token');
+        const response = await axios.post(
+          'http://localhost:8080/api/courses',
+          courseData,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
         console.log("Курс успешно создан:", response.data.course);
         setSuccessMessage('Курс успешно создан!');
         setCourseData({
@@ -121,6 +135,8 @@ export default function CourseCreationPage() {
 
   // Рендеринг компонента
   return (
+    <>
+    <Navibar />
     <div className="page">
       <div className="course-form">
         <h1 className="course-form__title">Создание нового курса</h1>
@@ -269,5 +285,6 @@ export default function CourseCreationPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

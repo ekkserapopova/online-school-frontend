@@ -1,0 +1,134 @@
+.answer-manager {
+    padding: 15px;
+    background-color: #fff;
+    width: 100%;
+  }
+  
+  .answer-manager h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .answers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .answer-item {
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+  }
+  
+  .answer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .answer-content.correct-answer {
+    background-color: #e8f5e9;
+  }
+  
+  .answer-text {
+    flex-grow: 1;
+  }
+  
+  .answer-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .answer-actions button {
+    padding: 3px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .answer-actions button:first-child {
+    background:none;
+  color: black;
+  }
+  
+  .answer-actions button:last-child {
+    background-color: #ffe3e3;
+    color: white;
+  }
+  
+  .add-answer-section {
+    margin-top: 15px;
+  }
+  
+  .add-answer-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-answer-form {
+    margin-top: 10px;
+  }
+  
+  .add-answer-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .answer-form-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .answer-form-controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-answer-form {
+    width: 100%;
+  }
+  
+  .edit-answer-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .answer-edit-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .answer-edit-controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .no-answers {
+    font-style: italic;
+    color: #757575;
+  }

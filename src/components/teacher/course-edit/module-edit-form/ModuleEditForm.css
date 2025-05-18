@@ -1,0 +1,98 @@
+.module-edit-form {
+    margin: 16px 0;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 3px solid #4a90e2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .module-edit-form__title {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .module-edit-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .module-edit-form__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .module-edit-form__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .module-edit-form__input,
+  .module-edit-form__textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  
+  .module-edit-form__input:focus,
+  .module-edit-form__textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  .module-edit-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .module-edit-form__cancel-button {
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .module-edit-form__cancel-button:hover {
+    background-color: #f3f3f3;
+  }
+  
+  .module-edit-form__submit-button {
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .module-edit-form__submit-button:hover {
+    background-color: #3a7fcf;
+  }
+  
+  .module-edit-form__submit-button:disabled {
+    background-color: #a0c4f0;
+    cursor: not-allowed;
+  }
+  
+  .module-edit-form__error {
+    color: #e53935;
+    font-size: 12px;
+    margin-top: 4px;
+  }

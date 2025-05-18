@@ -20,6 +20,17 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
+  // Добавим логирование для отладки
+  console.log("ImageUploadModal render:", { currentImage, imagePreview });
+  
+  // Получение имени файла из imagePreview URL если доступно
+  const getFileName = () => {
+    if (!imagePreview) return '';
+    // Пытаемся извлечь имя файла из data URL
+    const match = imagePreview.match(/name=(.*?)(;|$)/);
+    return match ? match[1] : 'Выбранное изображение';
+  };
+
   return (
     <div className="image-modal-overlay">
       <div className="image-modal">
@@ -33,21 +44,20 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
           </button>
         </div>
         <div className="image-modal__content">
-          <div className="image-modal__preview">
-            {imagePreview ? (
-              <img 
-                src={imagePreview} 
-                alt="Предпросмотр" 
-                className="image-modal__preview-img" 
-              />
-            ) : (
-              <img 
-                src={currentImage} 
-                alt="Текущее изображение" 
-                className="image-modal__current-img" 
-              />
-            )}
-          </div>
+          {imagePreview && (
+            <div className="image-modal__preview">
+              <div className="image-modal__preview-container">
+                <img 
+                  src={imagePreview} 
+                  alt="Предпросмотр" 
+                  className="image-modal__preview-image" 
+                />
+              </div>
+              <div className="image-modal__file-info">
+                <span className="image-modal__file-selected">✓ Файл выбран</span>
+              </div>
+            </div>
+          )}
           
           <div className="image-modal__upload">
             <input
@@ -58,11 +68,8 @@ const ImageUploadModal: React.FC<ImageUploadModalProps> = ({
               className="image-modal__file-input"
             />
             <label htmlFor="courseImage" className="image-modal__file-label">
-              Выбрать файл
+              {imagePreview ? 'Выбрать другой файл' : 'Выбрать файл'}
             </label>
-            <p className="image-modal__hint">
-              Рекомендуемый размер: 800x400 пикселей
-            </p>
           </div>
           <div className="image-modal__actions">
             <button 

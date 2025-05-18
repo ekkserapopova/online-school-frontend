@@ -6,7 +6,7 @@ import api from "../../modules/login";
 import { OneCourse } from "../../modules/courses";
 import Foooter from "../../components/footer/Foooter";
 import { User } from "../../modules/user";
-
+import axios from 'axios';
 
 const StudentCoursePage: React.FC = () => {
     // const { title, description, modules, teacher } = courseData;
@@ -22,7 +22,14 @@ const StudentCoursePage: React.FC = () => {
                 return;
             }
 
-            const course = await api.get(`/courses/${courseID}/user`)
+            const course = await axios.get(
+                `http://localhost:8080/api/courses/${courseID}/user`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             console.log(course.data);
             const courseData = course.data.course;
             setCourse(courseData);
@@ -37,8 +44,16 @@ const StudentCoursePage: React.FC = () => {
 
     const getCourseTeacher = async (teacherID: number) => {
         try {
-            const response = await api.get(`/user/${teacherID}`)
-            const teacherData = response.data.user;
+            const token = localStorage.getItem("auth_token");
+            const response = await axios.get(
+                `http://localhost:8080/api/user/${teacherID}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            const teacherData = response.data;
             console.log(teacherData);
             setTeacher(teacherData);
         }
@@ -69,10 +84,6 @@ const StudentCoursePage: React.FC = () => {
                 </div>
                 <div className="student-course__modules-header">
                     <h2 className="student-course__modules-title">Модули курса</h2>
-                    <div className="student-course__progress">
-                        <progress value={totalProgress} max={100} />
-                        <span>{Math.round(totalProgress)}%</span>
-                    </div>
                 </div>
                 <div className="student-course__modules-list">
                     {course && course.modules.map((module, index) => (

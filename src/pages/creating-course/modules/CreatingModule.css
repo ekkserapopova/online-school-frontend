@@ -130,7 +130,7 @@
   }
   
   .module__list-item--lesson {
-    border-left: 3px solid #4caf50;
+    border-left: 3px solid #73bff9 !important;
     display: flex;
     align-items: center;
     padding: 8px 12px;
@@ -147,7 +147,7 @@
   }
   
   .module__list-item--task {
-    border-left: 3px solid var(--accent-color);
+    border-left: 3px solid #ff9800;
   }
   
   .module__list-item--test {

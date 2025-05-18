@@ -6,6 +6,7 @@ import { Question, Test } from '../../../../../modules/test';
 import QuestionsList from '../question-list/QuestionsList';
 import QuestionForm from '../question-form/QuestionForm';
 import { convertDateFormat } from '../../../../../pages/signup-page/SignUpPage';
+import axios from 'axios';
 
 const TestCreatedPage: React.FC = () => {
     const [isCreated, setIsCreated] = useState(false);
@@ -22,7 +23,15 @@ const TestCreatedPage: React.FC = () => {
             setStatusMessage(null);
             setLoading(true);
 
-            const response = await api.get(`/courses/1/test/${testID}`);
+            const authToken = localStorage.getItem('auth_token');
+            const response = await axios.get(
+                `http://localhost:8080/api/courses/1/test/${testID}`,
+                {
+                    headers: {
+                        Authorization: authToken ? `Bearer ${authToken}` : ''
+                    }
+                }
+            );
             const testData = response.data.test;
 
             if (testData) {
@@ -55,7 +64,15 @@ const TestCreatedPage: React.FC = () => {
         try {
             setStatusMessage(null);
 
-            const response = await api.get(`/test/${testID}/questions`);
+            const authToken = localStorage.getItem('auth_token');
+            const response = await axios.get(
+                `http://localhost:8080/api/tests/${testID}/questions`,
+                {
+                    headers: {
+                        Authorization: authToken ? `Bearer ${authToken}` : ''
+                    }
+                }
+            );
             const questions = response.data.questions;
 
             if (questions) {
@@ -80,7 +97,16 @@ const TestCreatedPage: React.FC = () => {
     const generateTest = async(testId: number) => {
         try {
             if (!questions){
-                await api.post(`/test/${testId}`);
+                const authToken = localStorage.getItem('auth_token');
+                await axios.post(
+                    `http://localhost:8080/api/tests/${testId}`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: authToken ? `Bearer ${authToken}` : ''
+                        }
+                    }
+                );
             }
             
         } catch (error) {
