@@ -29,7 +29,9 @@ const AssignmentViewer: React.FC<AssignmentViewerProps> = ({
         <h1 className="assignment__title">{title}</h1>
         <div className="assignment__meta">
           <span className="assignment__due-date">Сдано: {dueDate}</span>
-          <span className="assignment__grade">Оценка: {grade}</span>
+          <span className="assignment__grade">
+          Оценка: <span>{Number.isInteger(Number(grade)) ? grade : Number(grade).toFixed(2)}</span>
+          </span>
         </div>
       </div>
       

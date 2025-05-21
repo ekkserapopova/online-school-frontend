@@ -89,7 +89,7 @@ const AnswerManager: React.FC<AnswerManagerProps> = ({
         setIsCorrect(false);
         setIsAddingAnswer(false);
       }
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Failed to add answer:', error);
       // Mock response for development
@@ -126,7 +126,7 @@ const AnswerManager: React.FC<AnswerManagerProps> = ({
     
     try {
       await axios.delete(
-        `http://localhost:8080/api/modules/${moduleId}/questions/${question.id}/answers/${answerId}`,
+        `http://localhost:8080/api/questions/${question.id}/answers/${answerId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('auth_token')}`
@@ -165,8 +165,8 @@ const AnswerManager: React.FC<AnswerManagerProps> = ({
     saveExpandedState(question.id);
     
     try {
-      const response = await axios.put(
-        `http://localhost:8080/api/modules/${moduleId}/questions/${question.id}/answers/${answerId}`,
+      const response = await axios.patch(
+        `http://localhost:8080/api/variants-answers/${answerId}`,
         {
           text: editingAnswerText,
           is_right: editingAnswerCorrect
@@ -187,7 +187,7 @@ const AnswerManager: React.FC<AnswerManagerProps> = ({
       setLocalAnswers(updatedAnswers);
       updateQuestion({ ...question, answers: updatedAnswers });
       cancelEditAnswer();
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Failed to update answer:', error);
       // Mock update for development
@@ -281,8 +281,8 @@ const AnswerManager: React.FC<AnswerManagerProps> = ({
                   />
                   Правильный ответ
                 </label>
-                <button onClick={handleAddAnswer}>Добавить</button>
-                <button onClick={() => setIsAddingAnswer(false)}>Отмена</button>
+                <button onClick={handleAddAnswer} className='add-item__submit-button'>Добавить</button>
+                <button onClick={() => setIsAddingAnswer(false)} className='add-item__cancel-button'>Отмена</button>
               </div>
             </div>
           )}

@@ -27,6 +27,7 @@ const SignupPage:FC = () =>{
     const [valueRole, setvalueRole] = useState('')
     const [valuePassword, setvaluePassword] = useState('')
     const [valueEmail, setvalueEmail] = useState('')
+    
     const navigation = useNavigate()
     const dispatch = useDispatch()
 
@@ -36,6 +37,10 @@ const SignupPage:FC = () =>{
         try{
             const birthDate = convertDateFormat(valueBirth)
             const tokenAuth = localStorage.getItem('auth_token');
+            var is_teacher = false;
+            if (valueRole === 'Преподаватель') {
+                is_teacher = true;
+            } 
             const response = await axios.post(
                 "http://localhost:8080/api/signup",
                 {
@@ -45,7 +50,7 @@ const SignupPage:FC = () =>{
                     email: valueEmail,
                     phone: valuePhone,
                     password: valuePassword,
-                    role: valueRole
+                    is_teacher: is_teacher,
                 },
                 {
                     headers: {
@@ -74,10 +79,15 @@ const SignupPage:FC = () =>{
             ))
 
 
-            navigation('/courses')
+            if (is_teacher) {
+                navigation('/teacher/courses')
+            } else{
+                navigation('/courses')
+            }
+            
 
         } catch{
-
+            alert('Ошибка регистрации, проверьте введенные данные')
         }
     }
     

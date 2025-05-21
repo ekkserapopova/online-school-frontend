@@ -108,7 +108,7 @@ const TaskAttemptsList: React.FC<TaskAttemptsListProps> = ({
               
               {attempt.score !== undefined && (
                 <div className="task-attempt__grade">
-                  Оценка: <span>{attempt.score}</span>
+                  Оценка: <span>{Number.isInteger(Number(attempt.score)) ? attempt.score : Number(attempt.score).toFixed(2)}</span>
                 </div>
               )}
             </li>

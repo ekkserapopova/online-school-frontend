@@ -31,10 +31,10 @@ const PaymentForm: FC<PaymentFormProps> = ({payment, onSubmit}) => {
         <p className="payment-course-info__description">{payment.course.description}</p>
         
         <div className="payment-course-details">
-          <div className="payment-course-details__duration">
+          {/* <div className="payment-course-details__duration">
             <p>Длительность: 12 недель</p>
             <p>Старт: 15 апреля 2025</p>
-          </div>
+          </div> */}
           <div className="payment-course-details__price">0 у.е.</div>
         </div>
       </div>

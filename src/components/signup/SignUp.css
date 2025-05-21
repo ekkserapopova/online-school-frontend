@@ -65,14 +65,14 @@
 .signup-input-birth:focus,
 .signup-input-role:focus,
 .signup-input-surname:focus{
-    outline: 1px solid #78244C;
+    outline: 1px solid var(--accent-color);
 }
 
 .signup-button{
     width: 100%;
     height: 34px;
     border-radius: 5px;
-    background-color: #78244C;
+    background-color: var(--accent-color);
     color: white;
     display: flex;
     justify-content: center;
@@ -80,7 +80,7 @@
 }
 
 .signup-button:hover{
-    background-color: #a9567e;
+    background-color: var(--accent-color-hover);
     cursor: pointer;
     /* border: 1px solid #2e515b; */
 }
@@ -111,3 +111,117 @@
 .signup-link a{
     text-decoration: none !important;
 }
+
+.role-toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  .role-option {
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #777;
+  }
+  
+  .role-option--active {
+    color: #3b82f6;
+    font-weight: 500;
+  }
+  
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #3b82f6;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #3b82f6;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(22px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 24px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* Tab-style role toggle similar to the screenshot */
+.tab-toggle {
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f2f2f2;
+    margin-top: 5px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .tab-option {
+    flex: 1;
+    padding: 10px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .tab-option--active {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 500;
+  }
+  
+  .tab-option:hover:not(.tab-option--active) {
+    background-color: #e5e5e5;
+  }
+  
+  /* Remove the old toggle styles or keep them if you need them elsewhere */

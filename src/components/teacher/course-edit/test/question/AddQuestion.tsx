@@ -22,6 +22,7 @@ const QuestionManager: React.FC<QuestionManagerProps> = ({
   const [showQuestionsList, setShowQuestionsList] = useState(false);
   const [editingQuestionId, setEditingQuestionId] = useState<number | null>(null);
   const [editingQuestionText, setEditingQuestionText] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Restore scroll position and expanded questions when component mounts
   useEffect(() => {
@@ -79,44 +80,42 @@ const QuestionManager: React.FC<QuestionManagerProps> = ({
   }, [moduleId]);
 
   const fetchQuestions = async () => {
+    // Add a flag to prevent duplicate calls
+    if (loading) return;
+    
     try {
+      setLoading(true);
       const authToken = localStorage.getItem('auth_token');
       const response = await axios.get(
         `http://localhost:8080/api/module/${moduleId}/questions`,
         {
           headers: {
-        Authorization: `Bearer ${authToken}`,
+            Authorization: `Bearer ${authToken}`,
           },
         }
       );
-      setQuestions(response.data.questions || []);
+      
+      // Log the response to debug
+      console.log('Questions API response:', response.data);
+      
+      // Safely handle the response data
+      if (response.data && Array.isArray(response.data.questions)) {
+        setQuestions(response.data.questions);
+      } else {
+        console.warn('Questions API returned unexpected format:', response.data);
+        setQuestions([]);
+      }
     } catch (error) {
       console.error('Failed to fetch questions:', error);
-      // Mock data for development
       setQuestions([]);
+    } finally {
+      setLoading(false);
     }
   };
 
   const toggleQuestionsList = () => {
     setShowQuestionsList(!showQuestionsList);
   };
-
-  // Add this to AddQuestion.tsx
-const closeQuestion = (questionId: number) => {
-  // Save scroll position
-  sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-  
-  // Remove the question from expanded list
-  const newExpandedQuestions = expandedQuestions.filter(id => id !== questionId);
-  setExpandedQuestions(newExpandedQuestions);
-  
-  // Update the expandedQuestions in sessionStorage
-  const expandedQuestionsObj: Record<number, boolean> = {};
-  newExpandedQuestions.forEach(id => {
-    expandedQuestionsObj[id] = true;
-  });
-  sessionStorage.setItem('expandedQuestions', JSON.stringify(expandedQuestionsObj));
-};
 
   const toggleExpandQuestion = (questionId: number) => {
     // Save scroll position when toggling
@@ -176,6 +175,7 @@ const closeQuestion = (questionId: number) => {
         });
         sessionStorage.setItem('expandedQuestions', JSON.stringify(expandedQuestionsObj));
       }
+      // window.location.reload();
     } catch (error) {
       console.error('Failed to add question:', error);
       // Mock response for development
@@ -210,7 +210,7 @@ const closeQuestion = (questionId: number) => {
     try {
       const authToken = localStorage.getItem('auth_token');
       await axios.delete(
-        `http://localhost:8080/api/modules/${moduleId}/questions/${questionId}`,
+        `http://localhost:8080/api/questions/${questionId}`,
         {
           headers: {
         Authorization: `Bearer ${authToken}`,
@@ -273,8 +273,8 @@ const closeQuestion = (questionId: number) => {
     
     try {
       const authToken = localStorage.getItem('auth_token');
-      const response = await axios.put(
-        `http://localhost:8080/api/modules/${moduleId}/questions/${questionId}`,
+      const response = await axios.patch(
+        `http://localhost:8080/api/questions/${questionId}`,
         { text: editingQuestionText },
         {
           headers: {

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import './ModuleTestsList.css';
 import TestQuestions from '../test-questions/TestQuestions';
 import { FiTrash } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 interface ModuleTestsListProps {
   tests: Test[] | undefined;
@@ -27,7 +28,7 @@ const ModuleTestsList: React.FC<ModuleTestsListProps> = ({ tests, onUpdateTest, 
         checkTestQuestions(String(test.id));
       });
     }
-  }, [tests]);
+  }, []);
 
   // Функция для проверки наличия вопросов у теста
   const checkTestQuestions = async (testId: string) => {
@@ -176,6 +177,7 @@ const ModuleTestsList: React.FC<ModuleTestsListProps> = ({ tests, onUpdateTest, 
               >
                 <div className="module__list-item-content">
                   <strong className="module__test-name">{test.name}</strong>
+                  <div className="module__all-buttons">
                   <div className="module__buttons">
                     {hasQuestions ? (
                       <button
@@ -212,7 +214,17 @@ const ModuleTestsList: React.FC<ModuleTestsListProps> = ({ tests, onUpdateTest, 
                       <FiTrash size={18} color='red'/>
                     </button>
                   </div>
+                  <div className="module__test-link-container">
+                    <Link 
+                      to={`/all/tests/${test.id}`} 
+                      className="module__test-link"
+                    >
+                      Перейти к решениям студентов →
+                    </Link>
+                 </div>
+                 </div>
                 </div>
+                
               </li>
               
               {/* Отображение вопросов теста */}

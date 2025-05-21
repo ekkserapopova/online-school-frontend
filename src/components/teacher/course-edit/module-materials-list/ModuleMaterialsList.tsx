@@ -265,7 +265,7 @@ const ModuleMaterialsList: React.FC<ModuleMaterialsListProps> = ({
                       onClick={() => handleDeleteClick(material.id)}
                       className="module-materials__delete-button"
                     >
-                      <FiTrash size={18} />
+                      <FiTrash size={18} color='red'/>
                     </button>
                   </div>
                 </div>

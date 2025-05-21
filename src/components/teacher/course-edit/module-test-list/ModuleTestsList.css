@@ -39,3 +39,22 @@
     border-top: none;
     padding-top: 0;
   }
+
+
+  .module__test-link-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .module__test-link {
+    color: #4a6da7;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    margin-top: 5px;
+  }
+  
+  .module__test-link:hover {
+    color: #385080;
+    text-decoration: underline;
+  }

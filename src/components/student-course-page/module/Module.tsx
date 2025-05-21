@@ -65,6 +65,26 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
     return count;
   };
 
+const formatDateTime = (dateString: string) => {
+  if (!dateString) return "";
+  
+  const date = new Date(dateString);
+  
+  const adjustedDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
+  
+  return adjustedDate.toLocaleString("ru-RU");
+};
+
+const formatTime = (dateString: string) => {
+  if (!dateString) return "";
+  
+  const date = new Date(dateString);
+  
+  const adjustedDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
+  
+  return adjustedDate.toLocaleTimeString("ru-RU");
+};
+
   return (
     <div className={`module ${open ? 'active' : ''}`}>
       <div className="module__header" onClick={toggleModule}>
@@ -79,13 +99,13 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
               module.tasks?.length ? `${module.tasks.length} ${getNoun(module.tasks.length, 'задание на код', 'задания на код', 'заданий на код')}` : null,
               ].filter(Boolean).join(', ') : ''}
 
-            {module.progress !== undefined && ` | Прогресс: ${module.progress}%`}
+            {/* {module.progress !== undefined && ` | Прогресс: ${module.progress}%`} */}
           </p>
         </div>
-        <div className="module__toggle">
+        {/* <div className="module__toggle">
           <span></span>
           <span></span>
-        </div>
+        </div> */}
       </div>
       <div className="module__content">
         <p className="module__description">{module.description}</p>
@@ -102,11 +122,11 @@ const ModuleComponent: FC<ModuleProps> = ({ module, index = 0 }) => {
               <div className="lesson__info">
                 <p className="lesson__title">{lesson.name}</p>
                 <span className={`lesson__type ${lesson.completed ? 'lesson__type_practice' : 'lesson__type_video'}`}>
-                  {lesson.completed ? 'Выполнено' : 'Видеоурок'}
+                  {lesson.completed ? 'Выполнено' : 'Видео-урок'}
                 </span>
               </div>
               <div className="lesson__duration">
-                {lesson.start ? new Date(lesson.start).toLocaleDateString("ru-RU") : ""}
+              {lesson.start ? formatDateTime(lesson.start) : ""} - {lesson.end ? formatTime(lesson.end) : ""}
               </div>
             </li>
             </Link>

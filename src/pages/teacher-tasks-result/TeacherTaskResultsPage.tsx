@@ -248,7 +248,7 @@ const TeacherTaskResultsPage: React.FC = () => {
               </div>
               
               <div className="teacher-task-results__filters">
-                <div className="teacher-task-results__search">
+                {/* <div className="teacher-task-results__search">
                   <input
                     type="text"
                     placeholder="Поиск по имени студента..."
@@ -256,9 +256,9 @@ const TeacherTaskResultsPage: React.FC = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="teacher-task-results__search-input"
                   />
-                </div>
+                </div> */}
                 
-                <div className="teacher-task-results__status-filter">
+                {/* <div className="teacher-task-results__status-filter">
                   <select 
                     value={filterStatus} 
                     onChange={(e) => setFilterStatus(e.target.value)}
@@ -269,7 +269,7 @@ const TeacherTaskResultsPage: React.FC = () => {
                     <option value="completed">Принятые</option>
                     <option value="canceled">Отклоненные</option>
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -373,35 +373,31 @@ const TeacherTaskResultsPage: React.FC = () => {
                       <div className="feedback-form__row">
                         <label className="feedback-form__label">
                           Оценка:
-                          <input 
-                            type="number" 
-                            min="0" 
-                            max="10" 
-                            step="0.1" 
-                            value={score}
-                            onChange={(e) => setScore(parseFloat(e.target.value))}
-                            disabled={selectedStudent.status === 'completed' || submitting}
+                          <div 
+                            // value={score}
+                            // onChange={(e) => setScore(parseFloat(e.target.value))}
+                            // disabled={selectedStudent.status === 'completed' || submitting}
                             className="feedback-form__score-input"
-                          />
+                          >{score}</div>
                         </label>
                       </div>
                       
                       <div className="feedback-form__row">
                         <label className="feedback-form__label">
                           Комментарий:
-                          <textarea 
-                            value={recommendation}
-                            onChange={(e) => setRecommendation(e.target.value)}
-                            disabled={selectedStudent.status === 'completed' || submitting}
+                          <div 
+                            // value=
+                            // onChange={(e) => setRecommendation(e.target.value)}
+                            // disabled={selectedStudent.status === 'completed' || submitting}
                             className="feedback-form__comment-input"
-                            placeholder="Напишите комментарий к решению студента..."
-                            rows={5}
-                          />
+                            // placeholder="Напишите комментарий к решению студента..."
+                            // rows={5}
+                          >{recommendation}</div>
                         </label>
                       </div>
                       
                       {/* {selectedStudent.status === 'in progress' && ( */}
-                        <div className="feedback-form__buttons">
+                        {/* <div className="feedback-form__buttons">
                           <button 
                             className="feedback-form__reject-button"
                             onClick={handleRejectTask}
@@ -416,7 +412,7 @@ const TeacherTaskResultsPage: React.FC = () => {
                           >
                             {submitting ? 'Сохранение...' : 'Сохранить оценку'}
                           </button>
-                        </div>
+                        </div> */}
                       {/* )} */}
                       
                       {selectedStudent.status !== 'in progress' && (

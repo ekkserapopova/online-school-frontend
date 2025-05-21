@@ -228,7 +228,7 @@ export default function CourseCreationPage() {
             </div>
             
             {/* Добавление своего языка */}
-            <div className="custom-language">
+            {/* <div className="custom-language">
               <label className="custom-language__label">
                 Добавить свой язык
               </label>
@@ -248,7 +248,7 @@ export default function CourseCreationPage() {
                   <Plus size={20} />
                 </button>
               </div>
-            </div>
+            </div> */}
             
             {/* Список выбранных и добавленных языков */}
             {courseData.languages.length > 0 && (

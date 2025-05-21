@@ -3,6 +3,8 @@ import './CourseOwerview.css';
 import { OneCourse } from '../../../modules/courses';
 import axios from 'axios';
 import { set } from 'date-fns';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 interface CourseOverviewProps {
     course: OneCourse;
@@ -16,6 +18,7 @@ const CourseOverview: React.FC<CourseOverviewProps> = ({ course, isEnrolled, typ
     useEffect(() => {   
         console.log(teacher);
     }, [teacher]);
+    const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
     return (
         <div className="course-overview">
             <h1 className="course-overview__title">{course.name}</h1>
@@ -26,12 +29,15 @@ const CourseOverview: React.FC<CourseOverviewProps> = ({ course, isEnrolled, typ
                     Вы записаны на курс
                 </p>)
             ) : (
-                type === 'course' && (
-                    <a 
+                type === 'course' && ( is_authenticated ?
+                    (<a 
                         className="course-overview__enroll-button" 
                         href={`/payment/${course.id}`}>
                         Записаться на курс
-                    </a>
+                    </a>) : 
+                    (<p style={{ fontFamily: "var(--font-family)", color: "white", fontWeight: 600}}>
+                        Необходимо авторизоваться для записи на курс
+                    </p>)
                 )
             )}
             <div className="course-overview__additional-info">

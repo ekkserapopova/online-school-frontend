@@ -22,7 +22,7 @@
 }
 
 .add-question-btn {
-  background-color: #4CAF50;
+  background-color: var(--accent-color);
   color: white;
   padding: 10px 15px;
   border: none;

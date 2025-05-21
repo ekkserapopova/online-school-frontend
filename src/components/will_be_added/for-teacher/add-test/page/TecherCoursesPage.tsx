@@ -4,13 +4,48 @@ import "./TeacherCoursesPage.css";
 import Navibar from "../../../../navbar/Navibar";
 import axios from 'axios';
 import { OneCourse } from "../../../../../modules/courses";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
 
 const TeacherCoursesPage: React.FC = () => {
   const [courses, setCourses] = useState<OneCourse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const user_name = useSelector((state: RootState) => state.auth.user_name);
+
   
   const navigate = useNavigate();
+  const getGenitiveForm = (name: string | null): string => {
+    if (!name) return '';
+    
+    // Правила преобразования имен в родительный падеж
+    // Эти правила упрощенные и подходят для большинства русских имен
+    
+    // Женские имена, оканчивающиеся на "а" или "я"
+    if (name.endsWith('а')) {
+        return name.slice(0, -1) + 'ы';
+    }
+    if (name.endsWith('я')) {
+        return name.slice(0, -1) + 'и';
+    }
+    
+    // Мужские имена
+    if (name === 'Фёдор' || name === 'Федор') return 'Федора';
+    if (name === 'Артем' || name === 'Артём') return 'Артема';
+    if (name === 'Александр') return 'Александра';
+    if (name === 'Дмитрий') return 'Дмитрия';
+    if (name === 'Сергей') return 'Сергея';
+    if (name === 'Андрей') return 'Андрея';
+    if (name === 'Николай') return 'Николая';
+    if (name === 'Михаил') return 'Михаила';
+    if (name === 'Иван') return 'Ивана';
+    if (name === 'Павел') return 'Павла';
+    
+    // Для неизвестных имен добавляем окончание "а" (подойдет для большинства мужских имен)
+    return name + 'а';
+};
+
+const genitiveUserName = getGenitiveForm(user_name);
 
   const getCourses = async () => {
     try {
@@ -44,7 +79,7 @@ const TeacherCoursesPage: React.FC = () => {
     <>
     <Navibar />
     <div className="teacher-courses-page">
-      <h1 className="page-title">Мои курсы</h1>
+      <h1 className="page-title">Курсы {genitiveUserName}</h1>
       
       {loading && (
         <div className="loading-container">

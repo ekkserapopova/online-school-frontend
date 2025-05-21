@@ -17,7 +17,7 @@ import TestResultsPage from './pages/tests-result/TestResultsPage.tsx';
 import StudentCoursePage from './pages/student-course-page/StudentCoursePage.tsx';
 import CodePage from './pages/code-page/CodePage.tsx';
 import TaskResultPage from './pages/task-result-page/TaskResultPage.tsx';
-import LessonPage from './pages/ lesson-page/LessonPage.tsx';
+import LessonPage from './pages/lesson-page/LessonPage.tsx';
 import CourseBuilder from './components/will_be_added/for-teacher/create-course/course-builder/CourseBuilder.tsx';
 import TestCreatedPage from './components/will_be_added/for-teacher/add-test/page/TestCreatedPage.tsx';
 import TestConstructorPage from './components/will_be_added/for-teacher/add-test/page/TestConstructorPage.tsx';

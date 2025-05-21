@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, use, useEffect } from "react";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
 
@@ -37,6 +37,18 @@ const SignUp: FC<LoginProps> = ({
   setvalueRole,
   onClickignUp
 }) => {
+
+  // Helper function to toggle between student and teacher roles
+  const toggleRole = () => {
+    setvalueRole(valueRole === "Ученик" ? "Преподаватель" : "Ученик");
+  };
+
+   useEffect(() => {
+    if (!valueRole) {
+      setvalueRole("Ученик");
+    }
+  }, []);
+
   return (
     <div className="signup-container">
       {/* <img
@@ -115,17 +127,23 @@ const SignUp: FC<LoginProps> = ({
           />
         </div>
 
-        {/* Роль */}
+        {/* Роль - переключатель вместо select */}
         <div className="signup-role">
           <div className="signup-role-text">Роль</div>
-          <select
-            onChange={(event) => setvalueRole(event.target.value)}
-            value={valueRole}
-            className="signup-input-role"
-          >
-            <option value="Ученик">Ученик</option>
-            <option value="Преподаватель">Преподаватель</option>
-          </select>
+          <div className="tab-toggle">
+            <div 
+              className={`tab-option ${valueRole === "Ученик" ? "tab-option--active" : ""}`}
+              onClick={() => setvalueRole("Ученик")}
+            >
+              Ученик
+            </div>
+            <div 
+              className={`tab-option ${valueRole === "Преподаватель" ? "tab-option--active" : ""}`}
+              onClick={() => setvalueRole("Преподаватель")}
+            >
+              Преподаватель
+            </div>
+          </div>
         </div>
       </div>
 

@@ -69,7 +69,7 @@
   }
   
   .add-answer-btn {
-    background-color: #4CAF50;
+    background-color: var(--accent-color);
     color: white;
     padding: 8px 12px;
     border: none;

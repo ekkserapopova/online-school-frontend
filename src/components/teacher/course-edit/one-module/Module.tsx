@@ -61,8 +61,6 @@ const Module: React.FC<ModuleProps> = ({
   const [tasks, setTasks] = React.useState(module.tasks);
   const [tests, setTests] = React.useState(module.tests);
 
-
-// Добавьте эту функцию в компонент Module
 const generateQuestions = async (testId: string) => {
   try {
     // Найдем тест в массиве tests
@@ -98,41 +96,41 @@ const generateQuestions = async (testId: string) => {
     toast.error('Не удалось сгенерировать вопросы. Попробуйте позже.');
   }
 };
-  React.useEffect(() => {
-    // Проверяем, относится ли сохранённый moduleId к текущему модулю
-    const activeModuleId = sessionStorage.getItem('activeModuleId');
-    const currentModuleId = `module-${module.id}`;
+  // React.useEffect(() => {
+  //   // Проверяем, относится ли сохранённый moduleId к текущему модулю
+  //   const activeModuleId = sessionStorage.getItem('activeModuleId');
+  //   const currentModuleId = `module-${module.id}`;
     
-    if (activeModuleId === currentModuleId) {
-      // Если это тот модуль, который был активен до перезагрузки,
-      // программно открываем его
-      onToggle(module.id);
+  //   if (activeModuleId === currentModuleId) {
+  //     // Если это тот модуль, который был активен до перезагрузки,
+  //     // программно открываем его
+  //     onToggle(module.id);
       
-      // Модуль найден, добавляем небольшую задержку для корректной прокрутки
-      setTimeout(() => {
-        const savedPosition = sessionStorage.getItem('scrollPosition');
-        if (savedPosition) {
-          window.scrollTo({
-            top: parseInt(savedPosition),
-            behavior: 'auto'
-          });
+  //     // Модуль найден, добавляем небольшую задержку для корректной прокрутки
+  //     setTimeout(() => {
+  //       const savedPosition = sessionStorage.getItem('scrollPosition');
+  //       if (savedPosition) {
+  //         window.scrollTo({
+  //           top: parseInt(savedPosition),
+  //           behavior: 'auto'
+  //         });
           
-          // Подсветим модуль на короткое время для индикации
-          const moduleElement = document.getElementById(currentModuleId);
-          if (moduleElement) {
-            moduleElement.classList.add('module--highlight');
-            setTimeout(() => {
-              moduleElement.classList.remove('module--highlight');
-            }, 1000);
-          }
+  //         // Подсветим модуль на короткое время для индикации
+  //         const moduleElement = document.getElementById(currentModuleId);
+  //         if (moduleElement) {
+  //           moduleElement.classList.add('module--highlight');
+  //           setTimeout(() => {
+  //             moduleElement.classList.remove('module--highlight');
+  //           }, 1000);
+  //         }
           
-          // Очищаем данные из sessionStorage
-          sessionStorage.removeItem('scrollPosition');
-          sessionStorage.removeItem('activeModuleId');
-        }
-      }, 100);
-    }
-  }, [module.id, onToggle]);
+  //         // Очищаем данные из sessionStorage
+  //         sessionStorage.removeItem('scrollPosition');
+  //         sessionStorage.removeItem('activeModuleId');
+  //       }
+  //     }, 100);
+  //   }
+  // }, [module.id, onToggle]);
 
   const deleteLesson = async (lessonID: string) => {
     try {
@@ -145,7 +143,7 @@ const generateQuestions = async (testId: string) => {
         (prevLessons ?? []).filter(lesson => String(lesson.id) !== String(lessonID))
       );
       console.log('Урок успешно удален');
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при удалении урока:', error);
     }
@@ -169,7 +167,7 @@ const generateQuestions = async (testId: string) => {
           String(lesson.id) === String(lessonID) ? { ...lesson, ...updatedData } : lesson
         )
       );
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при обновлении теста:', error);
     }
@@ -191,7 +189,7 @@ const generateQuestions = async (testId: string) => {
     onAddLesson(moduleId, { name: newLesson.name });
     
     // Перезагружаем страницу
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleAddTest = (moduleId: number, newTest: Test) => {
@@ -218,7 +216,7 @@ const generateQuestions = async (testId: string) => {
         (prevTests ?? []).filter(test => String(test.id) !== String(testID))
       );
       console.log('Тест успешно удален');
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при удалении теста:', error);
     }
@@ -241,7 +239,7 @@ const generateQuestions = async (testId: string) => {
           String(test.id) === String(testID) ? { ...test, ...updatedData } : test
         )
       );
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при обновлении урока:', error);
     }
@@ -258,7 +256,7 @@ const generateQuestions = async (testId: string) => {
         (prevTasks ?? []).filter(task => String(task.id) !== String(taskID))
       );
       console.log('Задание успешно удален');
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при удалении задания:', error);
     }
@@ -281,7 +279,7 @@ const generateQuestions = async (testId: string) => {
           String(task.id) === String(taskID) ? { ...task, ...updatedData } : task
         )
       );
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Ошибка при обновлении задания:', error);
     }
@@ -298,7 +296,7 @@ const generateQuestions = async (testId: string) => {
         }
       });
       console.log('Модуль успешно удален');
-      window.location.reload();
+      // window.location.reload();
     }
     } catch (error) {
       console.error('Ошибка при удалении модуля:', error);
@@ -356,7 +354,7 @@ const generateQuestions = async (testId: string) => {
       toast.success('Модуль успешно обновлен');
       
       // Перезагружаем страницу для обновления данных с сервера
-      window.location.reload();
+      // window.location.reload();
       
     } catch (error) {
       console.error('Ошибка при обновлении модуля:', error);

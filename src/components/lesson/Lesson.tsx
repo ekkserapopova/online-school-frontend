@@ -4,7 +4,7 @@ import { Material } from '../../modules/material';
 
 interface LessonProps {
   title: string;
-  videoUrl: string;
+  videoUrl?: string;
   description: string;
   materials: Material[];
   isCompleted?: boolean;
@@ -12,11 +12,17 @@ interface LessonProps {
 
 const Lesson: React.FC<LessonProps> = ({
   title,
-  videoUrl,
+  videoUrl='/videos/lesson.mov',
   description,
   materials,
 }) => {
   const [activeTab, setActiveTab] = useState('materials');
+
+  const isLocalVideo = () => {
+    if (!videoUrl) return false;
+    return videoUrl.endsWith('.mov') || videoUrl.endsWith('.mp4') || 
+           videoUrl.includes('/uploads/') || videoUrl.includes('/videos/');
+  };
   
   // Функция для скачивания материала по его ID
   const downloadMaterial = async (materialId: number, materialTitle: string) => {
@@ -75,7 +81,24 @@ const Lesson: React.FC<LessonProps> = ({
       console.log(`Файл "${materialTitle}${fileExtension}" успешно загружен`);
     } catch (error) {
       console.error('Ошибка при скачивании файла:', error);
-      alert(`Не удалось скачать файл: ${error instanceof Error ? error.message : 'Неизвестная ошибка'}`);
+      // alert(`Не удалось скачать файл`);
+      try {
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = '/materials/Переменные и типы данных.pdf';
+        a.download = `${materialTitle}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        
+        setTimeout(() => {
+          document.body.removeChild(a);
+        }, 100);
+        
+        console.log('Альтернативный файл успешно загружен');
+      } catch (backupError) {
+        console.error('Ошибка при скачивании альтернативного файла:', backupError);
+        alert('Не удалось скачать альтернативный файл');
+      }
     }
   };
 
@@ -87,7 +110,7 @@ const Lesson: React.FC<LessonProps> = ({
 
       <div className="lesson__content">
         <div className="lesson__video-container">
-          <iframe
+          {/* <iframe
             width="100%"
             height="500"
             src={videoUrl || "https://rutube.ru/play/embed/3027afcea542e2a86b2c92ddc23bba09"}
@@ -95,7 +118,18 @@ const Lesson: React.FC<LessonProps> = ({
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title={title}
-          ></iframe>
+          ></iframe> */}
+          {isLocalVideo() && (
+  <video 
+    width="100%" 
+    height="500" 
+    controls 
+    className="lesson__video-player"
+  >
+    <source src={videoUrl} type={videoUrl.endsWith('.mov') ? "video/quicktime" : "video/mp4"} />
+    Ваш браузер не поддерживает видео тег.
+  </video>
+)}
         </div>
 
         <aside className="lesson__sidebar">
